@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://santorinieyewear.com.br/sitemap.xml
