@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demonstração de Vitrine - Santorini</title>
+  <meta name="description" content="Vitrine virtual Santorini Eyewear — navegue pelo nosso catálogo completo de armações e óculos para óticas e revendedores.">
+  <meta property="og:title" content="Demonstração de Vitrine - Santorini">
+  <meta property="og:description" content="Vitrine virtual Santorini Eyewear — catálogo completo de armações e óculos.">
+  <meta property="og:image" content="1778084193288_santorini_logo_site.png">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" href="1778084193288_santorini_logo_site.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue-deep:  #1A3F7A;
+      --blue-mid:   #2E6DB4;
+      --blue-light: #4A8FD4;
+      --white:      #FFFFFF;
+      --header-h:   72px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100vh; overflow: hidden; font-family: 'Inter', sans-serif; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ── HEADER ── */
+    #site-header {
+      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      background: var(--blue-deep);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto;
+      height: var(--header-h);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px; gap: 16px;
+    }
+    .header-logo img {
+      filter: brightness(0) invert(1);
+      height: 38px; width: auto;
+      transition: opacity 0.2s;
+    }
+    .header-logo:hover img { opacity: 0.85; }
+    .nav-links {
+      display: flex; gap: 28px;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.82);
+      font-size: 0.88rem; font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+      padding: 4px 0;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--white);
+      transition: width 0.25s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-links a.active { color: var(--white); }
+    .nav-links a.active::after { width: 100%; }
+    .btn-whatsapp-header {
+      background: var(--white); color: var(--blue-deep);
+      padding: 9px 18px; border-radius: 6px;
+      font-size: 0.82rem; font-weight: 700;
+      white-space: nowrap; letter-spacing: 0.01em;
+      transition: background 0.22s, color 0.22s;
+      border: 2px solid var(--white);
+    }
+    .btn-whatsapp-header:hover {
+      background: transparent; color: var(--white);
+    }
+    .btn-whatsapp-header:focus-visible { outline: 3px solid var(--blue-light); outline-offset: 3px; }
+    .hamburger {
+      display: none; flex-direction: column;
+      justify-content: center; gap: 5px;
+      background: none; border: none; cursor: pointer;
+      padding: 6px; border-radius: 4px;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: 0.3s;
+    }
+    .mobile-menu {
+      background: var(--blue-deep);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 0;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.35s ease, padding 0.3s;
+    }
+    .mobile-menu.open {
+      max-height: 400px;
+      padding: 8px 0 16px;
+    }
+    .mobile-menu ul {
+      display: flex; flex-direction: column; padding: 0 24px; gap: 4px;
+    }
+    .mobile-menu a {
+      color: rgba(255,255,255,0.88);
+      font-size: 0.95rem; font-weight: 500;
+      padding: 10px 0; display: block;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--white); }
+    @media (max-width: 900px) {
+      .nav-links, .btn-whatsapp-header { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ── IFRAME ── */
+    #vitrine-frame {
+      position: fixed;
+      top: var(--header-h);
+      left: 0;
+      width: 100%;
+      height: calc(100vh - var(--header-h));
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      #vitrine-frame {
+        height: calc(100vh - var(--header-h) - 50px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header id="site-header" role="banner">
+    <div class="header-inner">
+      <a href="index.html" class="header-logo" aria-label="Santorini — ir para o início">
+        <img src="1778084193288_santorini_logo_site.png" alt="Santorini Eyewear" height="38">
+      </a>
+      <nav role="navigation" aria-label="Menu principal">
+        <ul class="nav-links">
+          <li><a href="index.html#hero">Início</a></li>
+          <li><a href="index.html#sobre">Sobre</a></li>
+          <li><a href="index.html#portfolio">Produtos</a></li>
+          <li><a href="index.html#valores">Valores</a></li>
+          <li><a href="index.html#depoimentos">Depoimentos</a></li>
+          <li><a href="index.html#contato">Contato</a></li>
+          <li><a href="vitrine.html" class="active">Vitrine</a></li>
+        </ul>
+      </nav>
+      <a href="https://wa.me/5521967434256"
+         class="btn-whatsapp-header"
+         aria-label="Falar no WhatsApp">
+        Falar no WhatsApp
+      </a>
+      <button class="hamburger"
+              aria-label="Abrir menu"
+              aria-expanded="false"
+              aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="mobile-menu" role="region" aria-label="Menu mobile">
+      <ul>
+        <li><a href="index.html#hero">Início</a></li>
+        <li><a href="index.html#sobre">Sobre</a></li>
+        <li><a href="index.html#portfolio">Produtos</a></li>
+        <li><a href="index.html#valores">Valores</a></li>
+        <li><a href="index.html#depoimentos">Depoimentos</a></li>
+        <li><a href="index.html#contato">Contato</a></li>
+        <li><a href="vitrine.html">Vitrine</a></li>
+        <li><a href="https://wa.me/5521967434256">Falar no WhatsApp</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <iframe
+    id="vitrine-frame"
+    src="https://santorini.egestor.com.br/vitrine/"
+    title="Vitrine Santorini Eyewear"
+    allowfullscreen
+    loading="lazy"
+  ></iframe>
+
+  <script>
+    const btn = document.querySelector('.hamburger');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open);
+      btn.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    });
+  </script>
+
+</body>
+</html>
