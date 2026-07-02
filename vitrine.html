@@ -23,7 +23,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100vh; overflow: hidden; font-family: 'Inter', sans-serif; }
+    html, body { font-family: 'Inter', sans-serif; }
     a { text-decoration: none; color: inherit; }
     ul { list-style: none; }
 
@@ -118,20 +118,21 @@
     }
 
     /* ── IFRAME ── */
-    #vitrine-frame {
-      position: fixed;
-      top: var(--header-h);
-      left: 0;
+    .vitrine-wrap {
+      margin-top: var(--header-h);
       width: 100%;
-      height: calc(100vh - var(--header-h));
+      overflow-x: hidden;
+      height: 8000px;
+      position: relative;
+    }
+    #vitrine-frame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: calc(100% + 20px);
+      height: 100%;
       border: none;
       display: block;
-    }
-
-    @media (max-width: 768px) {
-      #vitrine-frame {
-        height: calc(100vh - var(--header-h) - 50px);
-      }
     }
   </style>
 </head>
@@ -179,13 +180,15 @@
     </div>
   </header>
 
-  <iframe
-    id="vitrine-frame"
-    src="https://santorini.egestor.com.br/vitrine/"
-    title="Vitrine Santorini Eyewear"
-    allowfullscreen
-    loading="lazy"
-  ></iframe>
+  <div class="vitrine-wrap">
+    <iframe
+      id="vitrine-frame"
+      src="https://santorini.egestor.com.br/vitrine/"
+      title="Vitrine Santorini Eyewear"
+      allowfullscreen
+      loading="lazy"
+    ></iframe>
+  </div>
 
   <script>
     const btn = document.querySelector('.hamburger');

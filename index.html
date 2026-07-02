@@ -1,397 +1,732 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Santorini Eyewear</title>
-  <meta name="description" content="Santorini Eyewear — atacadista de artigos de ótica com design, qualidade e reposição ágil para óticas e revendedores em todo o Brasil.">
+  <meta name="description"
+    content="Santorini Eyewear — atacadista de artigos de ótica com design, qualidade e reposição ágil para óticas e revendedores em todo o Brasil.">
   <meta property="og:title" content="Santorini Eyewear">
-  <meta property="og:description" content="Santorini Eyewear — atacadista de artigos de ótica com design, qualidade e reposição ágil para óticas e revendedores em todo o Brasil.">
+  <meta property="og:description"
+    content="Santorini Eyewear — atacadista de artigos de ótica com design, qualidade e reposição ágil para óticas e revendedores em todo o Brasil.">
   <meta property="og:image" content="1778084193288_santorini_logo_site.png">
   <meta property="og:type" content="website">
   <link rel="icon" type="image/png" href="1778084193288_santorini_logo_site.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
   <style>
-
     /* ── VARIÁVEIS ── */
     :root {
-      --blue-deep:   #1A3F7A;
-      --blue-mid:    #2E6DB4;
-      --blue-light:  #4A8FD4;
-      --blue-pale:   #EAF1FA;
-      --aqua:        #21B7C7;
-      --gold:        #C9A84C;
-      --white:       #FFFFFF;
-      --off-white:   #F5F5F3;
-      --text:        #1C1C1C;
-      --text-muted:  #5A5A5A;
-      --border:      rgba(0,0,0,0.08);
-      --header-h:    72px;
-      --shadow-sm:   0 2px 12px rgba(0,0,0,0.06);
-      --shadow-md:   0 8px 32px rgba(0,0,0,0.10);
+      --blue-deep: #1A3F7A;
+      --blue-mid: #2E6DB4;
+      --blue-light: #4A8FD4;
+      --white: #FFFFFF;
+      --off-white: #F9F9F9;
+      --beige: #F3F4F6;
+      --text: #1A1A1A;
+      --text-muted: #6B7280;
+      --border: rgba(0, 0, 0, 0.08);
+      --header-h: 80px;
+      --shadow-sm: 0 1px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.07);
     }
 
     /* ── RESET ── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Inter', sans-serif;
       color: var(--text);
       background: var(--off-white);
       -webkit-font-smoothing: antialiased;
     }
-    img { max-width: 100%; display: block; }
-    a { text-decoration: none; color: inherit; }
-    ul { list-style: none; }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
 
     /* ── PRELOAD ── */
     #preload {
-      position: fixed; inset: 0; z-index: 99999;
-      background: var(--blue-deep);
-      display: flex; align-items: center; justify-content: center;
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       transition: opacity 0.5s ease, visibility 0.5s ease;
     }
-    #preload.done { opacity: 0; visibility: hidden; }
+
+    #preload.done {
+      opacity: 0;
+      visibility: hidden;
+    }
+
     #preload img {
       width: 180px;
-      filter: brightness(0) invert(1);
+      filter: brightness(0);
       animation: preloadPulse 1s ease-in-out infinite alternate;
     }
+
     @keyframes preloadPulse {
-      from { opacity: 0.5; transform: scale(0.97); }
-      to   { opacity: 1;   transform: scale(1); }
+      from {
+        opacity: 0.5;
+        transform: scale(0.97);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     /* ── HEADER ── */
     #site-header {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
       background: transparent;
-      transition: background 0.5s cubic-bezier(0.61,0.22,0.23,1),
-                  box-shadow 0.5s ease;
+      transition: background 0.4s ease, border-bottom 0.4s ease;
+      border-bottom: 1px solid transparent;
     }
+
     #site-header.scrolled {
-      background: var(--blue-deep);
-      box-shadow: 0 2px 24px rgba(0,0,0,0.18);
+      background: rgba(255, 255, 255, 0.98);
+      border-bottom: 1px solid var(--border);
     }
+
     .header-inner {
-      max-width: 1280px; margin: 0 auto;
+      max-width: 1280px;
+      margin: 0 auto;
       height: var(--header-h);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 40px; gap: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      gap: 24px;
     }
+
     .header-logo img {
       filter: brightness(0) invert(1);
-      height: 36px; width: auto;
-      transition: opacity 0.2s;
+      height: 28px;
+      width: auto;
+      transition: filter 0.4s ease, opacity 0.2s;
     }
-    .header-logo:hover img { opacity: 0.8; }
-    .nav-links { display: flex; gap: 36px; }
+
+    .header-logo:hover img {
+      opacity: 0.8;
+    }
+
+    #site-header.scrolled .header-logo img {
+      filter: brightness(0);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+    }
+
     .nav-links a {
-      color: rgba(255,255,255,0.78);
-      font-size: 0.78rem; font-weight: 500;
-      letter-spacing: 0.10em; text-transform: uppercase;
-      position: relative; padding-bottom: 2px;
-      transition: color 0.25s;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.3s;
     }
+
+    #site-header.scrolled .nav-links a {
+      color: var(--text);
+    }
+
     .nav-links a::after {
       content: '';
-      position: absolute; bottom: 0; left: 0;
-      width: 0; height: 1px;
-      background: var(--white);
-      transition: width 0.4s cubic-bezier(0.52,0.18,0.45,1.4);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--text);
+      transition: width 0.4s cubic-bezier(0.52, 0.18, 0.45, 1.4);
     }
-    .nav-links a:hover { color: var(--white); }
-    .nav-links a:hover::after { width: 100%; }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    #site-header.scrolled .nav-links a:hover {
+      color: var(--black);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
     .btn-header-cta {
       background: transparent;
       color: var(--white);
-      padding: 8px 20px;
-      border: 1px solid rgba(255,255,255,0.45);
-      font-size: 0.75rem; font-weight: 600;
-      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 10px 24px;
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      font-size: 0.70rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       white-space: nowrap;
       transition: background 0.3s, border-color 0.3s, color 0.3s;
     }
-    .btn-header-cta:hover {
-      background: var(--white);
-      color: var(--blue-deep);
-      border-color: var(--white);
+
+    #site-header.scrolled .btn-header-cta {
+      color: var(--black);
+      border-color: var(--black);
     }
+
+    .btn-header-cta:hover,
+    #site-header.scrolled .btn-header-cta:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
     .hamburger {
-      display: none; flex-direction: column;
-      justify-content: center; gap: 5px;
-      background: none; border: none; cursor: pointer; padding: 6px;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
     }
+
     .hamburger span {
-      display: block; width: 22px; height: 1.5px;
-      background: var(--white); border-radius: 1px; transition: 0.3s;
+      display: block;
+      width: 22px;
+      height: 1px;
+      background: var(--white);
+      transition: 0.3s;
     }
+
+    #site-header.scrolled .hamburger span {
+      background: var(--black);
+    }
+
     .mobile-menu {
-      background: var(--blue-deep);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      overflow: hidden; max-height: 0;
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+      max-height: 0;
       transition: max-height 0.35s ease, padding 0.3s;
     }
-    .mobile-menu.open { max-height: 420px; padding: 8px 0 18px; }
-    .mobile-menu ul { display: flex; flex-direction: column; padding: 0 28px; gap: 2px; }
-    .mobile-menu a {
-      color: rgba(255,255,255,0.82); font-size: 0.9rem;
-      padding: 10px 0; display: block;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-      letter-spacing: 0.05em; transition: color 0.2s;
+
+    .mobile-menu.open {
+      max-height: 420px;
+      padding: 8px 0 18px;
     }
-    .mobile-menu a:last-child { border-bottom: none; }
-    .mobile-menu a:hover { color: var(--white); }
+
+    .mobile-menu ul {
+      display: flex;
+      flex-direction: column;
+      padding: 0 28px;
+      gap: 2px;
+    }
+
+    .mobile-menu a {
+      color: var(--text);
+      font-size: 0.85rem;
+      padding: 12px 0;
+      display: block;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: 0.10em;
+      transition: color 0.2s;
+      text-transform: uppercase;
+    }
+
+    .mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--black);
+    }
+
     @media (max-width: 960px) {
-      .nav-links, .btn-header-cta { display: none; }
-      .hamburger { display: flex; }
-      .header-inner { padding: 0 24px; }
+
+      .nav-links,
+      .btn-header-cta {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .header-inner {
+        padding: 0 24px;
+      }
     }
 
     /* ── HERO ── */
     #hero {
       position: relative;
-      min-height: 100vh;
+      min-height: 100svh;
       background: url('Santorini Eyewear_midias/midia_1v2.png') center top / cover no-repeat;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       overflow: hidden;
     }
+
     .hero-overlay {
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background: linear-gradient(160deg,
-        rgba(10,22,52,0.72) 0%,
-        rgba(26,63,122,0.42) 55%,
-        rgba(10,22,52,0.20) 100%
-      );
+          rgba(10, 22, 52, 0.72) 0%,
+          rgba(26, 63, 122, 0.42) 55%,
+          rgba(10, 22, 52, 0.20) 100%);
     }
+
     .hero-content {
-      position: relative; z-index: 1;
-      text-align: center; color: var(--white);
-      padding: 0 24px; max-width: 740px;
-      animation: heroFadeUp 1s cubic-bezier(0.16,1,0.3,1) both;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: var(--white);
+      /* padding-top garante que o conteúdo nunca fique sob a navbar fixa */
+      padding: calc(var(--header-h) + 48px) 24px 80px;
+      max-width: 740px;
+      width: 100%;
+      animation: heroFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) both;
       animation-delay: 0.6s;
     }
+
     @keyframes heroFadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
+
     .hero-logo {
-      width: min(480px, 70vw); height: auto;
+      width: min(400px, 65vw);
+      height: auto;
       margin: 0 auto 32px;
       filter: brightness(0) invert(1);
     }
+
     .hero-eyebrow {
-      font-size: 0.72rem; font-weight: 600;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: rgba(255,255,255,0.60);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.60);
       margin-bottom: 12px;
     }
+
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 5vw, 3.4rem);
-      font-weight: 300; line-height: 1.2;
-      color: var(--white); margin-bottom: 10px;
+      font-size: clamp(1.8rem, 5vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 10px;
       letter-spacing: 0.02em;
     }
-    .hero-title em { font-style: italic; }
+
+    .hero-title em {
+      font-style: italic;
+    }
+
     .hero-sub {
-      font-size: 0.9rem; font-weight: 300;
-      color: rgba(255,255,255,0.68);
-      letter-spacing: 0.04em; margin-bottom: 44px;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.68);
+      letter-spacing: 0.04em;
+      margin-bottom: 40px;
       line-height: 1.7;
     }
+
     .hero-cta-group {
-      display: flex; flex-wrap: wrap;
-      justify-content: center; gap: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
     }
+
     .btn-hero-primary {
       display: inline-block;
       background: var(--blue-deep);
       border: 1px solid var(--blue-deep);
       color: var(--white);
       padding: 14px 36px;
-      font-size: 0.76rem; font-weight: 600;
-      letter-spacing: 0.10em; text-transform: uppercase;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
       transition: background 0.3s, border-color 0.3s;
     }
+
     .btn-hero-primary:hover {
       background: var(--blue-mid);
       border-color: var(--blue-mid);
     }
+
     .btn-hero-ghost {
       display: inline-block;
       background: transparent;
-      border: 1px solid rgba(255,255,255,0.40);
+      border: 1px solid rgba(255, 255, 255, 0.40);
       color: var(--white);
       padding: 14px 36px;
-      font-size: 0.76rem; font-weight: 600;
-      letter-spacing: 0.10em; text-transform: uppercase;
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
       transition: background 0.3s, border-color 0.3s;
     }
+
     .btn-hero-ghost:hover {
-      background: rgba(255,255,255,0.10);
-      border-color: rgba(255,255,255,0.70);
+      background: rgba(255, 255, 255, 0.10);
+      border-color: rgba(255, 255, 255, 0.70);
     }
+
     .hero-scroll {
-      position: absolute; bottom: 36px; left: 50%;
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
       transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      color: rgba(255,255,255,0.50);
-      font-size: 0.65rem; letter-spacing: 0.16em; text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255, 255, 255, 0.50);
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
       z-index: 2;
     }
+
     .hero-scroll-line {
-      width: 1px; height: 40px;
-      background: linear-gradient(to bottom, rgba(255,255,255,0.50), transparent);
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.50), transparent);
       animation: scrollLine 2s ease-in-out infinite;
     }
+
     @keyframes scrollLine {
-      0%, 100% { transform: scaleY(0.3); transform-origin: top; opacity: 0.4; }
-      50%       { transform: scaleY(1);   transform-origin: top; opacity: 1;   }
+
+      0%,
+      100% {
+        transform: scaleY(0.3);
+        transform-origin: top;
+        opacity: 0.4;
+      }
+
+      50% {
+        transform: scaleY(1);
+        transform-origin: top;
+        opacity: 1;
+      }
     }
+
+    @media (max-width: 960px) {
+      .hero-content {
+        padding-top: calc(var(--header-h) + 36px);
+      }
+    }
+
     @media (max-width: 600px) {
-      #hero { background-position: center 25%; }
-      .hero-logo { width: min(320px, 80vw); }
-      .hero-scroll { bottom: 22px; }
+      #hero {
+        background-position: center 25%;
+      }
+
+      .hero-content {
+        padding: calc(var(--header-h) + 28px) 20px 60px;
+      }
+
+      .hero-logo {
+        width: min(260px, 72vw);
+      }
+
+      .hero-scroll {
+        bottom: 22px;
+      }
     }
 
     /* ── STATS STRIP ── */
     #stats {
-      background: var(--blue-deep);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
     }
+
     .stats-inner {
-      max-width: 1280px; margin: 0 auto;
+      max-width: 1280px;
+      margin: 0 auto;
       display: flex;
     }
+
     .stat-item {
-      flex: 1; padding: 28px 40px;
-      display: flex; align-items: center; gap: 18px;
-      border-right: 1px solid rgba(255,255,255,0.10);
+      flex: 1;
+      padding: 32px 48px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      border-right: 1px solid var(--border);
     }
-    .stat-item:last-child { border-right: none; }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
     .stat-icon {
       flex-shrink: 0;
-      width: 40px; height: 40px;
-      border: 1px solid rgba(255,255,255,0.18);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.70);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue-deep);
+      opacity: 0.7;
     }
+
     .stat-value {
-      font-size: 0.95rem; font-weight: 600; color: var(--white);
-      letter-spacing: 0.02em; line-height: 1.2;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      letter-spacing: 0.04em;
+      line-height: 1.2;
     }
+
     .stat-label {
-      font-size: 0.72rem; color: rgba(255,255,255,0.50);
-      letter-spacing: 0.04em; margin-top: 3px;
+      font-size: 0.70rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      margin-top: 4px;
+      text-transform: uppercase;
     }
+
     @media (max-width: 768px) {
-      .stats-inner { flex-direction: column; }
-      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 20px 24px; }
-      .stat-item:last-child { border-bottom: none; }
+      .stats-inner {
+        flex-direction: column;
+      }
+
+      .stat-item {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 20px 24px;
+      }
+
+      .stat-item:last-child {
+        border-bottom: none;
+      }
     }
 
     /* ── SOBRE ── */
-    #sobre { background: var(--white); }
-    .sobre-inner {
-      max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr;
-    }
-    .sobre-media {
-      position: relative; overflow: hidden;
-      min-height: 560px;
-      background: var(--off-white);
-    }
-    .sobre-media img {
-      width: 100%; height: 100%; object-fit: cover;
+    #sobre {
+      background: linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), url('Santorini Eyewear_midias/midia_6.jpg') center center / cover no-repeat;
+      position: relative;
       display: block;
-      transition: transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
     }
-    .sobre-media:hover img { transform: scale(1.04); }
-    .sobre-media-accent {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--blue-deep), var(--aqua));
+
+    .sobre-inner {
+      display: contents;
     }
+
+    .sobre-media {
+      display: block;
+      overflow: hidden;
+      min-height: 560px;
+      background: var(--beige);
+    }
+
+    .sobre-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .sobre-media:hover img {
+      transform: scale(1.04);
+    }
+
     .sobre-text {
-      padding: 80px 72px;
-      display: flex; flex-direction: column; justify-content: center; gap: 24px;
+      padding: 80px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+      background: transparent;
+      box-shadow: none;
     }
+
     .section-eyebrow {
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.22em; text-transform: uppercase;
-      color: var(--blue-mid);
-      display: flex; align-items: center; gap: 10px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: var(--blue-deep);
+      display: flex;
+      align-items: center;
+      gap: 12px;
     }
+
     .section-eyebrow::before {
       content: '';
-      display: block; width: 24px; height: 1px;
-      background: var(--blue-mid);
+      display: block;
+      width: 28px;
+      height: 1px;
+      background: var(--blue-deep);
     }
+
     .section-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 3.5vw, 2.8rem);
-      font-weight: 400; line-height: 1.15;
-      color: var(--text); letter-spacing: 0.01em;
+      font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--text);
+      letter-spacing: 0.01em;
     }
-    .section-title em { font-style: italic; color: var(--blue-deep); }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--blue-deep);
+    }
+
     .sobre-lead {
-      font-size: 1rem; font-weight: 500; color: var(--blue-deep);
-      line-height: 1.7;
+      font-size: 0.95rem;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.75;
     }
+
     .sobre-text p {
-      color: var(--text-muted); line-height: 1.85;
-      font-size: 0.93rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+      font-size: 0.88rem;
     }
+
     .sobre-divider {
-      width: 40px; height: 1px;
-      background: var(--blue-deep); opacity: 0.3;
+      width: 32px;
+      height: 1px;
+      background: var(--blue-deep);
+      opacity: 0.25;
     }
+
     @media (max-width: 900px) {
-      .sobre-inner { grid-template-columns: 1fr; }
-      .sobre-media { min-height: 320px; order: -1; }
-      .sobre-text { padding: 52px 28px; }
+      #sobre {
+        grid-template-columns: 1fr;
+      }
+
+      .sobre-media {
+        min-height: 300px;
+      }
+
+      .sobre-text {
+        padding: 52px 32px;
+      }
     }
 
     /* ── PORTFÓLIO ── */
-    #portfolio { background: var(--off-white); padding: 100px 40px; }
+    #portfolio {
+      background: var(--off-white);
+      padding: 100px 40px;
+    }
+
     .section-header {
-      max-width: 1280px; margin: 0 auto 60px;
-      display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+      max-width: 1280px;
+      margin: 0 auto 60px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
     }
-    .section-header-left { display: flex; flex-direction: column; gap: 14px; }
+
+    .section-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
     .portfolio-desc {
-      color: var(--text-muted); font-size: 0.88rem;
-      line-height: 1.7; max-width: 400px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      max-width: 400px;
     }
+
     .btn-outline-blue {
       display: inline-block;
       border: 1px solid var(--blue-deep);
       color: var(--blue-deep);
       padding: 11px 28px;
-      font-size: 0.73rem; font-weight: 600;
-      letter-spacing: 0.10em; text-transform: uppercase;
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
       transition: background 0.3s, color 0.3s;
       white-space: nowrap;
     }
-    .btn-outline-blue:hover { background: var(--blue-deep); color: var(--white); }
+
+    .btn-outline-blue:hover {
+      background: var(--blue-deep);
+      color: var(--white);
+    }
+
     .btn-solid-blue {
       display: inline-block;
       background: var(--blue-deep);
       border: 1px solid var(--blue-deep);
       color: var(--white);
       padding: 11px 28px;
-      font-size: 0.73rem; font-weight: 600;
-      letter-spacing: 0.10em; text-transform: uppercase;
+      font-size: 0.73rem;
+      font-weight: 600;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
       transition: background 0.3s, border-color 0.3s;
     }
-    .btn-solid-blue:hover { background: var(--blue-mid); border-color: var(--blue-mid); }
+
+    .btn-solid-blue:hover {
+      background: var(--blue-mid);
+      border-color: var(--blue-mid);
+    }
 
     /* Bento grid */
     .portfolio-grid {
-      max-width: 1280px; margin: 0 auto;
+      max-width: 1280px;
+      margin: 0 auto;
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       grid-template-rows: repeat(4, 240px);
@@ -402,425 +737,1025 @@
         "i i j j";
       gap: 10px;
     }
-    .portfolio-item:nth-child(1)  { grid-area: a; }
-    .portfolio-item:nth-child(2)  { grid-area: b; }
-    .portfolio-item:nth-child(3)  { grid-area: c; }
-    .portfolio-item:nth-child(4)  { grid-area: d; }
-    .portfolio-item:nth-child(5)  { grid-area: e; }
-    .portfolio-item:nth-child(6)  { grid-area: f; }
-    .portfolio-item:nth-child(7)  { grid-area: g; }
-    .portfolio-item:nth-child(8)  { grid-area: h; }
-    .portfolio-item:nth-child(9)  { grid-area: i; }
-    .portfolio-item:nth-child(10) { grid-area: j; }
+
+    .portfolio-item:nth-child(1) {
+      grid-area: a;
+    }
+
+    .portfolio-item:nth-child(2) {
+      grid-area: b;
+    }
+
+    .portfolio-item:nth-child(3) {
+      grid-area: c;
+    }
+
+    .portfolio-item:nth-child(4) {
+      grid-area: d;
+    }
+
+    .portfolio-item:nth-child(5) {
+      grid-area: e;
+    }
+
+    .portfolio-item:nth-child(6) {
+      grid-area: f;
+    }
+
+    .portfolio-item:nth-child(7) {
+      grid-area: g;
+    }
+
+    .portfolio-item:nth-child(8) {
+      grid-area: h;
+    }
+
+    .portfolio-item:nth-child(9) {
+      grid-area: i;
+    }
+
+    .portfolio-item:nth-child(10) {
+      grid-area: j;
+    }
 
     .portfolio-item {
-      position: relative; overflow: hidden;
-      cursor: pointer; display: block;
-      padding: 0; width: 100%; border: none;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: block;
+      padding: 0;
+      width: 100%;
+      border: none;
       background: #cdd4df;
-      opacity: 0; transform: translateY(16px);
+      opacity: 0;
+      transform: translateY(16px);
       transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s;
     }
-    .portfolio-item.visible { opacity: 1; transform: translateY(0); }
-    .portfolio-item:nth-child(1)  { transition-delay: 0.04s; }
-    .portfolio-item:nth-child(2)  { transition-delay: 0.10s; }
-    .portfolio-item:nth-child(3)  { transition-delay: 0.15s; }
-    .portfolio-item:nth-child(4)  { transition-delay: 0.20s; }
-    .portfolio-item:nth-child(5)  { transition-delay: 0.25s; }
-    .portfolio-item:nth-child(6)  { transition-delay: 0.30s; }
-    .portfolio-item:nth-child(7)  { transition-delay: 0.36s; }
-    .portfolio-item:nth-child(8)  { transition-delay: 0.40s; }
-    .portfolio-item:nth-child(9)  { transition-delay: 0.45s; }
-    .portfolio-item:nth-child(10) { transition-delay: 0.50s; }
+
+    .portfolio-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .portfolio-item:nth-child(1) {
+      transition-delay: 0.04s;
+    }
+
+    .portfolio-item:nth-child(2) {
+      transition-delay: 0.10s;
+    }
+
+    .portfolio-item:nth-child(3) {
+      transition-delay: 0.15s;
+    }
+
+    .portfolio-item:nth-child(4) {
+      transition-delay: 0.20s;
+    }
+
+    .portfolio-item:nth-child(5) {
+      transition-delay: 0.25s;
+    }
+
+    .portfolio-item:nth-child(6) {
+      transition-delay: 0.30s;
+    }
+
+    .portfolio-item:nth-child(7) {
+      transition-delay: 0.36s;
+    }
+
+    .portfolio-item:nth-child(8) {
+      transition-delay: 0.40s;
+    }
+
+    .portfolio-item:nth-child(9) {
+      transition-delay: 0.45s;
+    }
+
+    .portfolio-item:nth-child(10) {
+      transition-delay: 0.50s;
+    }
 
     .portfolio-item img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94);
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       display: block;
     }
-    .portfolio-item:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.18); }
-    .portfolio-item:hover img { transform: scale(1.07); }
+
+    .portfolio-item:hover {
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.18);
+    }
+
+    .portfolio-item:hover img {
+      transform: scale(1.07);
+    }
+
     .portfolio-item::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(10,22,52,0.50) 0%, transparent 55%);
-      transition: opacity 0.3s; pointer-events: none;
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10, 22, 52, 0.50) 0%, transparent 55%);
+      transition: opacity 0.3s;
+      pointer-events: none;
     }
-    .portfolio-item:hover::after { opacity: 1.3; }
+
+    .portfolio-item:hover::after {
+      opacity: 1.3;
+    }
+
     .portfolio-item-zoom {
-      position: absolute; inset: 0; z-index: 3;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0; transition: opacity 0.3s;
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
     }
-    .portfolio-item:hover .portfolio-item-zoom { opacity: 1; }
+
+    .portfolio-item:hover .portfolio-item-zoom {
+      opacity: 1;
+    }
+
     .portfolio-item-zoom span {
-      width: 44px; height: 44px;
-      border: 1px solid rgba(255,255,255,0.60);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.90);
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.60);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.90);
     }
+
     .portfolio-tag {
-      position: absolute; bottom: 16px; left: 16px; z-index: 4;
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      z-index: 4;
       background: var(--blue-deep);
       color: var(--white);
-      font-size: 0.64rem; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 0.64rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       padding: 4px 12px;
     }
+
     .portfolio-cta {
-      max-width: 1280px; margin: 40px auto 0;
-      display: flex; flex-wrap: wrap; gap: 12px;
+      max-width: 1280px;
+      margin: 40px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
+
     @media (max-width: 1024px) {
       .portfolio-grid {
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(4, 200px);
         grid-template-areas: "a a b" "a a c" "d e f" "g h i";
       }
-      .portfolio-item:nth-child(10) { display: none; }
+
+      .portfolio-item:nth-child(10) {
+        display: none;
+      }
     }
+
     @media (max-width: 700px) {
-      #portfolio { padding: 72px 20px; }
+      #portfolio {
+        padding: 72px 20px;
+      }
+
       .portfolio-grid {
-        grid-template-columns: repeat(2,1fr);
-        grid-template-rows: repeat(5,180px);
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 180px);
         grid-template-areas: "a a" "b c" "d e" "f g" "h i";
       }
-      .portfolio-item:nth-child(10) { display: none; }
-      .section-header { flex-direction: column; align-items: flex-start; }
+
+      .portfolio-item:nth-child(10) {
+        display: none;
+      }
+
+      .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
     }
+
     @media (max-width: 420px) {
-      .portfolio-grid { grid-template-columns:1fr; grid-template-areas:none; }
-      .portfolio-item { grid-area:unset!important; aspect-ratio:4/3; }
-      .portfolio-item:nth-child(10) { display:block; }
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: none;
+      }
+
+      .portfolio-item {
+        grid-area: unset !important;
+        aspect-ratio: 4/3;
+      }
+
+      .portfolio-item:nth-child(10) {
+        display: block;
+      }
     }
 
     /* ── LIGHTBOX ── */
     .lightbox {
-      position: fixed; inset: 0; z-index: 10000;
-      display: none; align-items: center; justify-content: center;
-      background: rgba(5,12,28,0.92);
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(5, 12, 28, 0.92);
       padding: 72px 24px 32px;
     }
-    .lightbox.open { display: flex; }
+
+    .lightbox.open {
+      display: flex;
+    }
+
     .lightbox-dialog {
-      position: relative; width: min(1100px,100%);
+      position: relative;
+      width: min(1100px, 100%);
       max-height: calc(100vh - 104px);
-      display: flex; flex-direction: column; align-items: center; gap: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
     }
+
     .lightbox-image {
-      max-width: 100%; max-height: calc(100vh - 170px);
-      object-fit: contain; background: transparent;
+      max-width: 100%;
+      max-height: calc(100vh - 170px);
+      object-fit: contain;
+      background: transparent;
     }
-    .lightbox-caption { color: rgba(255,255,255,0.70); font-size: 0.85rem; }
+
+    .lightbox-caption {
+      color: rgba(255, 255, 255, 0.70);
+      font-size: 0.85rem;
+    }
+
     .lightbox-button {
-      position: absolute; z-index: 2;
-      width: 44px; height: 44px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.08);
-      color: var(--white); display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: background 0.2s;
+      position: absolute;
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s;
     }
-    .lightbox-button:hover { background: rgba(255,255,255,0.18); }
-    .lightbox-close { top: -54px; right: 0; }
-    .lightbox-prev { top:50%; left:-58px; transform:translateY(-50%); }
-    .lightbox-next { top:50%; right:-58px; transform:translateY(-50%); }
+
+    .lightbox-button:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    .lightbox-close {
+      top: -54px;
+      right: 0;
+    }
+
+    .lightbox-prev {
+      top: 50%;
+      left: -58px;
+      transform: translateY(-50%);
+    }
+
+    .lightbox-next {
+      top: 50%;
+      right: -58px;
+      transform: translateY(-50%);
+    }
+
     @media (max-width:760px) {
-      .lightbox-prev { left:8px; }
-      .lightbox-next { right:8px; }
+      .lightbox-prev {
+        left: 8px;
+      }
+
+      .lightbox-next {
+        right: 8px;
+      }
     }
 
     /* ── VITRINE ── */
     #vitrine {
-      background: var(--blue-deep);
+      background: var(--white);
       padding: 0;
     }
+
     .vitrine-header {
-      max-width: 1280px; margin: 0 auto;
+      max-width: 1280px;
+      margin: 0 auto;
       padding: 72px 40px 48px;
-      display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
     }
-    .vitrine-header-left { display: flex; flex-direction: column; gap: 14px; }
-    .vitrine-header .section-eyebrow { color: var(--white); }
-    .vitrine-header .section-eyebrow::before { background: var(--white); }
-    .vitrine-header .section-title { color: var(--white); }
-    .vitrine-header .section-title em { color: var(--white); font-style: italic; }
+
+    .vitrine-header-left {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
     .vitrine-desc {
-      color: var(--white); font-size: 0.88rem;
-      line-height: 1.7; max-width: 380px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+      max-width: 380px;
     }
-    .btn-ghost-white {
-      display: inline-block;
-      border: 1px solid rgba(255,255,255,0.35);
-      color: var(--white);
-      padding: 11px 28px;
-      font-size: 0.73rem; font-weight: 600;
-      letter-spacing: 0.10em; text-transform: uppercase;
-      transition: background 0.3s, border-color 0.3s;
-      white-space: nowrap;
-    }
-    .btn-ghost-white:hover { background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.70); }
+
     .vitrine-frame-wrap {
       width: 100%;
-      height: calc(100vh - var(--header-h));
-      position: relative;
       overflow: hidden;
+      position: relative;
     }
-    .vitrine-frame-wrap iframe {
-      width: 100%; height: 100%;
-      border: none; display: block;
+
+    /* A barra de rolagem foi eliminada pela altura absoluta, então não precisamos mais forçar a largura para fora da tela. */
+    #vitrine-iframe {
+      width: 100%;
+      border: none;
+      display: block;
+      height: 1300px;
     }
+
     @media (max-width: 768px) {
-      .vitrine-header { flex-direction: column; align-items: flex-start; padding: 52px 24px 36px; }
-      .vitrine-frame-wrap { height: calc(100vh - var(--header-h) - 48px); }
+      .vitrine-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 52px 24px 36px;
+      }
+
+      #vitrine-iframe {
+        height: 1100px;
+      }
     }
 
     /* ── DEPOIMENTOS ── */
-    #depoimentos { background: var(--off-white); padding: 100px 0; overflow: hidden; }
-    .depoimentos-inner { max-width: 1280px; margin: 0 auto; }
-    .depoimentos-head {
-      padding: 0 40px; margin-bottom: 52px;
-      display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
+    /* ── DEPOIMENTOS ── */
+    #depoimentos {
+      background: url('Santorini Eyewear_midias/midia_7.jpg') center center / cover;
+      position: relative;
+      padding: 100px 0;
+      overflow: hidden;
     }
-    .depoimentos-head-left { display: flex; flex-direction: column; gap: 14px; }
-    .depoimentos-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; }
-    .depoimentos-arrows { display: flex; gap: 8px; flex-shrink: 0; }
+
+    #depoimentos::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(230, 236, 248, 0.78);
+    }
+
+    .depoimentos-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .depoimentos-head {
+      padding: 0 40px;
+      margin-bottom: 52px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .depoimentos-head-left {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .depoimentos-desc {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+
+    .depoimentos-arrows {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
     .depoimento-arrow {
-      width: 44px; height: 44px;
-      border: 1px solid rgba(26,63,122,0.20);
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(26, 63, 122, 0.18);
       background: var(--white);
       color: var(--blue-deep);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       transition: background 0.25s, color 0.25s, border-color 0.25s;
     }
-    .depoimento-arrow:hover { background: var(--blue-deep); color: var(--white); border-color: var(--blue-deep); }
-    .depoimentos-marquee {
-      width: 100%; overflow-x: auto; overflow-y: hidden;
-      padding: 6px 40px 20px; cursor: grab;
-      scrollbar-width: none; scroll-behavior: auto; user-select: none;
+
+    .depoimento-arrow:hover {
+      background: var(--blue-deep);
+      color: var(--white);
+      border-color: var(--blue-deep);
     }
-    .depoimentos-marquee::-webkit-scrollbar { display: none; }
-    .depoimentos-marquee.dragging { cursor: grabbing; }
-    .depoimentos-track { display: flex; gap: 16px; width: max-content; }
+
+    .depoimentos-marquee {
+      width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 6px 40px 20px;
+      cursor: grab;
+      scrollbar-width: none;
+      scroll-behavior: auto;
+      user-select: none;
+    }
+
+    .depoimentos-marquee::-webkit-scrollbar {
+      display: none;
+    }
+
+    .depoimentos-marquee.dragging {
+      cursor: grabbing;
+    }
+
+    .depoimentos-track {
+      display: flex;
+      gap: 14px;
+      width: max-content;
+    }
+
     .depoimento-card {
-      flex: 0 0 clamp(280px, 28vw, 400px);
+      /* exatamente 3 cards visíveis: (tela - padding lateral 80px - 2 gaps de 14px) / 3 */
+      flex: 0 0 calc((min(100vw, 1280px) - 80px - 28px) / 3);
       background: var(--white);
-      padding: 28px 28px 24px;
-      border: 1px solid var(--border);
-      display: flex; flex-direction: column; gap: 16px;
+      padding: 32px 28px 24px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
       transition: box-shadow 0.25s, transform 0.25s;
       cursor: default;
     }
-    .depoimento-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
-    .depoimento-top { display: flex; align-items: center; gap: 14px; }
+
+    .depoimento-card:hover {
+      box-shadow: 0 8px 32px rgba(26, 63, 122, 0.10);
+      transform: translateY(-2px);
+    }
+
+    .depoimento-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
     .depoimento-avatar {
-      width: 44px; height: 44px;
+      width: 40px;
+      height: 40px;
       background: var(--blue-deep);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--white); font-weight: 700; font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-weight: 600;
+      font-size: 0.9rem;
       flex-shrink: 0;
     }
-    .depoimento-card:nth-child(3n+1) .depoimento-avatar { background: var(--blue-deep); }
-    .depoimento-card:nth-child(3n+2) .depoimento-avatar { background: #1B6B78; }
-    .depoimento-card:nth-child(3n)   .depoimento-avatar { background: #2E4A8A; }
-    .depoimento-card h3 { font-size: 0.92rem; font-weight: 600; color: var(--text); }
-    .depoimento-meta { color: var(--text-muted); font-size: 0.75rem; margin-top: 2px; }
-    .depoimento-stars { color: #C9A84C; letter-spacing: 0.06em; font-size: 0.88rem; }
-    .depoimento-card blockquote { color: var(--text-muted); line-height: 1.75; font-size: 0.90rem; }
+
+    .depoimento-card:nth-child(3n+1) .depoimento-avatar {
+      background: var(--blue-deep);
+    }
+
+    .depoimento-card:nth-child(3n+2) .depoimento-avatar {
+      background: #1B5E72;
+    }
+
+    .depoimento-card:nth-child(3n) .depoimento-avatar {
+      background: #2C4080;
+    }
+
+    .depoimento-card h3 {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .depoimento-meta {
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      margin-top: 1px;
+    }
+
+    .depoimento-stars {
+      color: #B8963E;
+      letter-spacing: 0.04em;
+      font-size: 0.85rem;
+    }
+
+    .depoimento-card blockquote {
+      color: var(--text-muted);
+      line-height: 1.8;
+      font-size: 0.88rem;
+    }
+
     .depoimento-tag {
-      margin-top: auto; align-self: flex-start;
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-top: auto;
+      align-self: flex-start;
+      font-size: 0.62rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       color: var(--blue-deep);
-      border-bottom: 1px solid rgba(26,63,122,0.25);
+      border-bottom: 1px solid rgba(26, 63, 122, 0.20);
       padding-bottom: 2px;
     }
+
     @media (max-width: 768px) {
-      #depoimentos { padding: 72px 0; }
-      .depoimentos-head { flex-direction: column; align-items: flex-start; padding: 0 24px; }
-      .depoimentos-marquee { padding: 6px 24px 16px; }
-      .depoimento-card { flex-basis: 80vw; }
+      #depoimentos {
+        padding: 72px 0;
+      }
+
+      .depoimentos-head {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0 24px;
+      }
+
+      .depoimentos-marquee {
+        padding: 6px 24px 16px;
+      }
+
+      /* mobile: 1 card por vez */
+      .depoimento-card {
+        flex: 0 0 calc(100vw - 48px - 14px);
+      }
     }
 
     /* ── VALORES ── */
     #valores {
       background: var(--blue-deep);
-      padding: 100px 40px;
-      position: relative; overflow: hidden;
+      position: relative;
+      padding: 120px 40px;
     }
+
     #valores::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
     }
-    .valores-inner { max-width: 1280px; margin: 0 auto; }
-    .valores-head { margin-bottom: 60px; display: flex; flex-direction: column; gap: 14px; }
-    .valores-head .section-eyebrow { color: rgba(255,255,255,0.45); }
-    .valores-head .section-eyebrow::before { background: rgba(255,255,255,0.45); }
-    .valores-head .section-title { color: var(--white); }
-    .valores-head .section-title em { color: var(--aqua); }
-    .valores-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: rgba(255,255,255,0.08); }
+
+    .valores-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .valores-head {
+      margin-bottom: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .valores-head .section-eyebrow {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .valores-head .section-eyebrow::before {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .valores-head .section-title {
+      color: var(--white);
+    }
+
+    .valores-head .section-title em {
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .valores-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.10);
+    }
+
     .valor-card {
       background: var(--blue-deep);
-      padding: 44px 40px;
-      display: flex; flex-direction: column; gap: 18px;
+      padding: 52px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
       position: relative;
       transition: background 0.3s;
     }
-    .valor-card:hover { background: rgba(255,255,255,0.04); }
+
+    .valor-card:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
     .valor-card-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 3.5rem; font-weight: 300;
-      color: rgba(255,255,255,0.08);
-      line-height: 1; position: absolute; top: 24px; right: 28px;
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.06);
+      line-height: 1;
+      position: absolute;
+      top: 20px;
+      right: 24px;
     }
+
     .valor-icon {
-      width: 40px; height: 40px;
-      border: 1px solid rgba(255,255,255,0.18);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.60);
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.55);
     }
+
     .valor-card h3 {
-      font-size: 0.82rem; font-weight: 700;
-      color: var(--white); letter-spacing: 0.10em;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.16em;
       text-transform: uppercase;
     }
-    .valor-card p { color: rgba(255,255,255,0.60); line-height: 1.80; font-size: 0.90rem; }
-    .valor-card ul { display: flex; flex-direction: column; gap: 8px; }
+
+    .valor-card p {
+      color: rgba(255, 255, 255, 0.62);
+      line-height: 1.85;
+      font-size: 0.88rem;
+    }
+
+    .valor-card ul {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
     .valor-card ul li {
-      color: rgba(255,255,255,0.60); font-size: 0.90rem;
-      padding-left: 18px; position: relative; line-height: 1.55;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 0.88rem;
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.55;
     }
+
+    .valor-card ul li strong {
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 600;
+    }
+
     .valor-card ul li::before {
-      content: ''; position: absolute; left: 0; top: 9px;
-      width: 6px; height: 1px; background: var(--aqua);
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.4);
     }
-    @media (max-width: 900px) { .valores-grid { grid-template-columns: 1fr; } }
-    @media (max-width: 768px) { #valores { padding: 72px 24px; } }
+
+    @media (max-width: 900px) {
+      .valores-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #valores {
+        padding: 72px 24px;
+      }
+    }
 
     /* ── CONTATO ── */
-    #contato { background: var(--white); padding: 100px 40px; }
-    .contato-inner { max-width: 1280px; margin: 0 auto; }
-    .contato-head { margin-bottom: 52px; display: flex; flex-direction: column; gap: 14px; }
+    #contato {
+      background: url('Santorini Eyewear_midias/midia_5.jpg') center center / cover;
+      position: relative;
+      padding: 120px 40px;
+    }
+
+    #contato::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(5, 12, 38, 0.80);
+    }
+
+    .contato-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contato-head {
+      margin-bottom: 52px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .contato-head .section-eyebrow {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .contato-head .section-eyebrow::before {
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .contato-head .section-title {
+      color: var(--white);
+    }
+
+    .contato-head .section-title em {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
     .contato-grid {
-      display: grid; grid-template-columns: 1.1fr 0.9fr;
-      border: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      border: 1px solid rgba(255, 255, 255, 0.12);
       overflow: hidden;
     }
+
     .contato-map iframe {
-      display: block; width: 100%; height: 100%; min-height: 440px; border: none;
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 440px;
+      border: none;
     }
+
     .contato-info {
-      background: var(--blue-deep);
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      border-left: 1px solid rgba(255, 255, 255, 0.10);
       padding: 52px 44px;
-      display: flex; flex-direction: column; gap: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
       position: relative;
     }
-    .contato-info::before {
-      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, var(--blue-mid), var(--aqua));
-    }
+
     .info-item {
-      display: flex; gap: 18px; align-items: flex-start;
-      padding: 18px; border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
     }
+
     .info-icon {
-      flex-shrink: 0; width: 38px; height: 38px;
-      border: 1px solid rgba(255,255,255,0.15);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,0.55);
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.50);
     }
+
     .info-item strong {
-      display: block; font-size: 0.68rem; font-weight: 700;
-      color: rgba(255,255,255,0.45); text-transform: uppercase;
-      letter-spacing: 0.10em; margin-bottom: 5px;
+      display: block;
+      font-size: 0.64rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.40);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin-bottom: 5px;
     }
-    .info-item p, .info-item a { color: rgba(255,255,255,0.82); font-size: 0.92rem; line-height: 1.6; }
-    .info-item a:hover { color: var(--white); }
+
+    .info-item p,
+    .info-item a {
+      color: rgba(255, 255, 255, 0.80);
+      font-size: 0.90rem;
+      line-height: 1.6;
+    }
+
+    .info-item a:hover {
+      color: var(--white);
+    }
+
     .btn-whatsapp {
-      display: flex; align-items: center; justify-content: center; gap: 10px;
-      background: #25D366; color: var(--white);
-      padding: 15px 24px; margin-top: 8px;
-      font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: #25D366;
+      color: var(--white);
+      padding: 15px 24px;
+      margin-top: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       transition: background 0.25s, transform 0.2s;
     }
-    .btn-whatsapp:hover { background: #1EB858; transform: translateY(-2px); }
-    @media (max-width: 960px) {
-      .contato-grid { grid-template-columns: 1fr; }
-      .contato-info { padding: 36px 28px; order: -1; }
-      .contato-map iframe { min-height: 300px; height: 300px; }
+
+    .btn-whatsapp:hover {
+      background: #1EB858;
+      transform: translateY(-2px);
     }
-    @media (max-width: 768px) { #contato { padding: 72px 24px; } }
+
+    @media (max-width: 960px) {
+      .contato-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contato-info {
+        padding: 36px 28px;
+        order: -1;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.10);
+      }
+
+      .contato-map iframe {
+        min-height: 300px;
+        height: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #contato {
+        padding: 72px 24px;
+      }
+    }
 
     /* ── FOOTER ── */
     .site-footer {
-      background: #0D2244;
+      background: #070E1E;
       color: var(--white);
-      padding: 64px 40px 28px;
+      padding: 72px 40px 32px;
     }
+
     .footer-inner {
-      max-width: 1280px; margin: 0 auto;
-      display: grid; grid-template-columns: 1.4fr 0.8fr 1fr;
-      gap: 52px; align-items: start;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr 1fr;
+      gap: 60px;
+      align-items: start;
     }
-    .footer-logo img { filter: brightness(0) invert(1); height: 38px; width: auto; margin-bottom: 20px; }
-    .footer-about p { color: rgba(255,255,255,0.55); line-height: 1.75; max-width: 380px; font-size: 0.88rem; }
+
+    .footer-logo img {
+      filter: brightness(0) invert(1);
+      height: 28px;
+      width: auto;
+      margin-bottom: 24px;
+    }
+
+    .footer-about p {
+      color: rgba(255, 255, 255, 0.45);
+      line-height: 1.85;
+      max-width: 340px;
+      font-size: 0.85rem;
+    }
+
     .footer-heading {
-      font-size: 0.68rem; font-weight: 700;
-      letter-spacing: 0.16em; text-transform: uppercase;
-      color: rgba(255,255,255,0.35); margin-bottom: 18px;
+      font-size: 0.60rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.28);
+      margin-bottom: 20px;
     }
-    .footer-links, .footer-contact-list { display: flex; flex-direction: column; gap: 10px; }
-    .footer-links a, .footer-contact-list span, .footer-contact-list a {
-      color: rgba(255,255,255,0.60); font-size: 0.88rem; line-height: 1.6;
+
+    .footer-links,
+    .footer-contact-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a,
+    .footer-contact-list span,
+    .footer-contact-list a {
+      color: rgba(255, 255, 255, 0.52);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      letter-spacing: 0.02em;
       transition: color 0.2s;
     }
-    .footer-links a:hover, .footer-contact-list a:hover { color: var(--white); }
-    .footer-bottom {
-      max-width: 1280px; margin: 44px auto 0;
-      padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      color: rgba(255,255,255,0.35); font-size: 0.78rem;
+
+    .footer-links a:hover,
+    .footer-contact-list a:hover {
+      color: var(--white);
     }
+
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 56px auto 0;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      color: rgba(255, 255, 255, 0.28);
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
     .footer-back-top {
-      color: rgba(255,255,255,0.55);
-      border: 1px solid rgba(255,255,255,0.15);
-      padding: 8px 16px;
-      font-size: 0.70rem; font-weight: 600;
-      letter-spacing: 0.10em; text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      padding: 8px 18px;
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
       transition: color 0.2s, border-color 0.2s;
     }
-    .footer-back-top:hover { color: var(--white); border-color: rgba(255,255,255,0.40); }
+
+    .footer-back-top:hover {
+      color: var(--white);
+      border-color: rgba(255, 255, 255, 0.30);
+    }
+
     @media (max-width: 800px) {
-      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
-      .footer-bottom { flex-direction: column; align-items: flex-start; }
-      .site-footer { padding: 52px 24px 24px; }
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .site-footer {
+        padding: 52px 24px 24px;
+      }
     }
 
     /* ── WHATSAPP FLUTUANTE ── */
     .whatsapp-float {
-      position: fixed; bottom: 28px; right: 28px; z-index: 9999;
-      width: 52px; height: 52px;
-      background: #25D366; color: var(--white);
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 20px rgba(37,211,102,0.38);
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 9999;
+      width: 52px;
+      height: 52px;
+      background: #25D366;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.38);
       transition: background 0.25s, box-shadow 0.25s, transform 0.25s;
     }
-    .whatsapp-float:hover { background: #1EB858; transform: translateY(-3px); }
+
+    .whatsapp-float:hover {
+      background: #1EB858;
+      transform: translateY(-3px);
+    }
 
     /* ── SCROLL REVEAL ── */
     .reveal {
-      opacity: 0; transform: translateY(20px);
-      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-    .reveal-delay-1 { transition-delay: 0.10s; }
-    .reveal-delay-2 { transition-delay: 0.20s; }
-    .reveal-delay-3 { transition-delay: 0.30s; }
 
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 {
+      transition-delay: 0.10s;
+    }
+
+    .reveal-delay-2 {
+      transition-delay: 0.20s;
+    }
+
+    .reveal-delay-3 {
+      transition-delay: 0.30s;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- ════════ PRELOAD ════════ -->
@@ -838,7 +1773,6 @@
         <ul class="nav-links">
           <li><a href="#hero">Início</a></li>
           <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#portfolio">Produtos</a></li>
           <li><a href="#vitrine">Vitrine</a></li>
           <li><a href="#depoimentos">Depoimentos</a></li>
           <li><a href="#contato">Contato</a></li>
@@ -855,7 +1789,6 @@
       <ul>
         <li><a href="#hero">Início</a></li>
         <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#portfolio">Produtos</a></li>
         <li><a href="#vitrine">Vitrine</a></li>
         <li><a href="#depoimentos">Depoimentos</a></li>
         <li><a href="#contato">Contato</a></li>
@@ -870,17 +1803,14 @@
     <div class="hero-content">
       <img class="hero-logo" src="1778084193288_santorini_logo_site.png" alt="Santorini Eyewear">
       <p class="hero-eyebrow">Atacadista de artigos de ótica</p>
-      <h1 class="hero-title">Design que <em>vende</em>,<br>qualidade que <em>fideliza</em></h1>
-      <p class="hero-sub">Soluções completas para óticas e revendedores em todo o Brasil.</p>
+      <h1 class="hero-title">Santorini, <em>perfeito</em> pra você.</h1>
+      <p class="hero-sub">Atuamos no mercado atacadista fornecendo soluções completas para óticas e revendedores em todo o Brasil.</p>
       <div class="hero-cta-group">
         <a href="https://wa.me/5521967434256" class="btn-hero-primary" aria-label="Falar com a Santorini pelo WhatsApp">
           Falar no WhatsApp
         </a>
         <a href="#vitrine" class="btn-hero-ghost" aria-label="Acessar vitrine virtual">
           Ver vitrine
-        </a>
-        <a href="#portfolio" class="btn-hero-ghost" aria-label="Ver produtos">
-          Ver produtos
         </a>
       </div>
     </div>
@@ -895,9 +1825,12 @@
     <div class="stats-inner">
       <div class="stat-item">
         <div class="stat-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
-            <rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" />
+            <rect x="14" y="3" width="7" height="7" />
+            <rect x="14" y="14" width="7" height="7" />
+            <rect x="3" y="14" width="7" height="7" />
           </svg>
         </div>
         <div>
@@ -907,9 +1840,11 @@
       </div>
       <div class="stat-item">
         <div class="stat-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path
+              d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
           </svg>
         </div>
         <div>
@@ -919,9 +1854,10 @@
       </div>
       <div class="stat-item">
         <div class="stat-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-            <polyline points="17 6 23 6 23 12"/>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+            <polyline points="17 6 23 6 23 12" />
           </svg>
         </div>
         <div>
@@ -935,117 +1871,25 @@
   <!-- ════════ SOBRE ════════ -->
   <section id="sobre" aria-labelledby="sobre-title">
     <div class="sobre-inner">
-      <div class="sobre-media">
-        <img
-          src="Santorini Eyewear_midias/midia_1v2.png"
-          alt="Santorini Eyewear — produto em destaque"
-          loading="lazy">
-        <div class="sobre-media-accent" aria-hidden="true"></div>
-      </div>
       <div class="sobre-text">
         <p class="section-eyebrow reveal">Nossa história</p>
         <h2 id="sobre-title" class="section-title reveal reveal-delay-1">
           Moda e <em>ótica</em><br>em uma só visão
         </h2>
         <p class="sobre-lead reveal reveal-delay-2">
-          Fundada em 2012, a Santorini Eyewear nasceu da experiência do nosso CEO no mercado de moda, trazendo um olhar estratégico para tendências e estilo ao setor óptico.
+          Fundada em 2012, a empresa surgiu a partir da experiência de seu CEO no mercado de moda, trazendo um olhar estratégico para tendências e estilo.
         </p>
         <div class="sobre-divider reveal reveal-delay-2"></div>
         <p class="reveal reveal-delay-3">
-          Incorporamos esse diferencial ao desenvolvimento do nosso portfólio, oferecendo produtos que unem design, versatilidade e alto potencial de venda.
+          Com a migração para o setor óptico, incorporamos esse diferencial ao desenvolvimento do nosso portfólio, oferecendo produtos que unem design, versatilidade e alto potencial de venda.
         </p>
         <p class="reveal reveal-delay-3">
-          Atuamos no mercado atacadista, fornecendo soluções completas para óticas, revendedores e distribuidores em todo o Brasil — com mix estratégico para diferentes perfis de público.
+          Atuamos no mercado atacadista de artigos de ótica, fornecendo soluções completas para óticas, revendedores e distribuidores em todo o Brasil. Nosso foco está em oferecer produtos com alto potencial de venda, acompanhando as principais tendências do setor e garantindo um mix estratégico para diferentes perfis de público.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- ════════ PORTFÓLIO ════════ -->
-  <section id="portfolio" aria-labelledby="portfolio-title">
-    <div class="section-header reveal">
-      <div class="section-header-left">
-        <p class="section-eyebrow">Portfólio</p>
-        <h2 id="portfolio-title" class="section-title">
-          Nossos <em>produtos</em>
-        </h2>
-        <p class="portfolio-desc">Design, estilo e versatilidade em cada peça. Conheça alguns produtos do nosso catálogo.</p>
-      </div>
-      <a href="https://wa.me/5521967434256" class="btn-solid-blue" aria-label="Solicitar catálogo completo">
-        Solicitar catálogo
-      </a>
-    </div>
-
-    <div class="portfolio-grid">
-      <button class="portfolio-item" type="button" aria-label="Ampliar: Armação masculina Santorini">
-        <img src="Santorini Eyewear_midias/midia_2.jpg" alt="Armação óptica masculina Santorini" loading="lazy">
-        <span class="portfolio-tag">Destaque</span>
-        <div class="portfolio-item-zoom" aria-hidden="true">
-          <span>
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          </span>
-        </div>
-      </button>
-      <button class="portfolio-item" type="button" aria-label="Ampliar: Armação cat-eye feminina Santorini">
-        <img src="Santorini Eyewear_midias/midia_3.jpg" alt="Armação cat-eye feminina Santorini" loading="lazy">
-        <div class="portfolio-item-zoom" aria-hidden="true"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div>
-      </button>
-      <button class="portfolio-item" type="button" aria-label="Ampliar: Óculos Santorini Eyewear">
-        <img src="Santorini Eyewear_midias/midia_4.jpg" alt="Óculos Santorini Eyewear" loading="lazy">
-        <div class="portfolio-item-zoom" aria-hidden="true"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div>
-      </button>
-      <button class="portfolio-item" type="button" aria-label="Ampliar: Óculos masculino Santorini">
-        <img src="Santorini Eyewear_midias/midia_5.jpg" alt="Óculos masculino Santorini" loading="lazy">
-        <div class="portfolio-item-zoom" aria-hidden="true"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div>
-      </button>
-      <button class="portfolio-item" type="button" aria-label="Ampliar: Produto óptico Santorini">
-        <img src="Santorini Eyewear_midias/midia_6.jpg" alt="Produto óptico Santorini" loading="lazy">
-        <div class="portfolio-item-zoom" aria-hidden="true"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div>
-      </button>
-      <button class="portfolio-item" type="button" aria-label="Ampliar: Produto óptico Santorini">
-        <img src="Santorini Eyewear_midias/midia_7.jpg" alt="Produto óptico Santorini" loading="lazy">
-        <div class="portfolio-item-zoom" aria-hidden="true"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div>
-      </button>
-      <button class="portfolio-item" type="button" aria-label="Ampliar: Produto óptico Santorini">
-        <img src="Santorini Eyewear_midias/midia_8.jpg" alt="Produto óptico Santorini" loading="lazy">
-        <div class="portfolio-item-zoom" aria-hidden="true"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div>
-      </button>
-      <button class="portfolio-item" type="button" aria-label="Ampliar: Produto óptico Santorini">
-        <img src="Santorini Eyewear_midias/midia_9.jpg" alt="Produto óptico Santorini" loading="lazy">
-        <div class="portfolio-item-zoom" aria-hidden="true"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div>
-      </button>
-      <button class="portfolio-item" type="button" aria-label="Ampliar: Produto óptico Santorini">
-        <img src="Santorini Eyewear_midias/midia_10.jpg" alt="Produto óptico Santorini" loading="lazy">
-        <div class="portfolio-item-zoom" aria-hidden="true"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div>
-      </button>
-      <button class="portfolio-item" type="button" aria-label="Ampliar: Produto óptico Santorini">
-        <img src="Santorini Eyewear_midias/midia_11.jpg" alt="Produto óptico Santorini" loading="lazy">
-        <div class="portfolio-item-zoom" aria-hidden="true"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span></div>
-      </button>
-    </div>
-
-    <div class="portfolio-cta reveal">
-      <a href="https://wa.me/5521967434256" class="btn-solid-blue">Solicitar catálogo completo</a>
-      <a href="#vitrine" class="btn-outline-blue">Ver vitrine virtual</a>
-    </div>
-  </section>
-
-  <!-- ════════ LIGHTBOX ════════ -->
-  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de imagem">
-    <div class="lightbox-dialog">
-      <button class="lightbox-button lightbox-close" type="button" aria-label="Fechar">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-      <button class="lightbox-button lightbox-prev" type="button" aria-label="Anterior">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-      </button>
-      <img class="lightbox-image" src="" alt="" id="lightbox-img">
-      <p class="lightbox-caption" id="lightbox-caption"></p>
-      <button class="lightbox-button lightbox-next" type="button" aria-label="Próxima">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-      </button>
-    </div>
-  </div>
 
   <!-- ════════ VITRINE ════════ -->
   <section id="vitrine" aria-label="Vitrine virtual Santorini">
@@ -1053,18 +1897,14 @@
       <div class="vitrine-header-left">
         <p class="section-eyebrow">Catálogo online</p>
         <h2 class="section-title">Vitrine <em>virtual</em></h2>
-        <p class="vitrine-desc">Navegue pelo nosso catálogo completo de armações e óculos. Faça seu pedido diretamente pelo WhatsApp.</p>
+        <p class="vitrine-desc">Navegue pelo nosso catálogo completo de armações e óculos. Faça seu pedido diretamente
+          pelo WhatsApp.</p>
       </div>
-      <a href="https://wa.me/5521967434256" class="btn-ghost-white">Fazer pedido</a>
     </div>
     <div class="vitrine-frame-wrap">
-      <iframe
-        src="https://santorini.egestor.com.br/vitrine/"
-        title="Vitrine Santorini Eyewear"
-        allowfullscreen
-        loading="lazy"
-        scrolling="yes"
-      ></iframe>
+      <div class="vitrine-scroll-cover" aria-hidden="true"></div>
+      <iframe id="vitrine-iframe" src="https://santorini.egestor.com.br/vitrine/" title="Vitrine Santorini Eyewear"
+        allowfullscreen loading="lazy" scrolling="no"></iframe>
     </div>
   </section>
 
@@ -1079,10 +1919,16 @@
         </div>
         <div class="depoimentos-arrows">
           <button class="depoimento-arrow prev" type="button" aria-label="Anterior">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 18l-6-6 6-6" />
+            </svg>
           </button>
           <button class="depoimento-arrow next" type="button" aria-label="Próximo">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18l6-6-6-6" />
+            </svg>
           </button>
         </div>
       </div>
@@ -1091,16 +1937,23 @@
           <div class="depoimento-card">
             <div class="depoimento-top">
               <div class="depoimento-avatar" aria-hidden="true">E</div>
-              <div><h3>Ester Fernandes</h3><p class="depoimento-meta">1 avaliação · há 4 anos</p></div>
+              <div>
+                <h3>Ester Fernandes</h3>
+                <p class="depoimento-meta">1 avaliação · há 4 anos</p>
+              </div>
             </div>
             <p class="depoimento-stars" aria-label="5 estrelas">★★★★★</p>
-            <blockquote>Qualidade, novidades sempre, bom atendimento. Simplicidade e tudo o que há de moderno a Santorini tem!</blockquote>
+            <blockquote>Qualidade, novidades sempre, bom atendimento. Simplicidade e tudo o que há de moderno a
+              Santorini tem!</blockquote>
             <span class="depoimento-tag">Qualidade e novidade</span>
           </div>
           <div class="depoimento-card">
             <div class="depoimento-top">
               <div class="depoimento-avatar" aria-hidden="true">C</div>
-              <div><h3>Carlos</h3><p class="depoimento-meta">Local Guide · 6 avaliações</p></div>
+              <div>
+                <h3>Carlos</h3>
+                <p class="depoimento-meta">Local Guide · 6 avaliações</p>
+              </div>
             </div>
             <p class="depoimento-stars" aria-label="5 estrelas">★★★★★</p>
             <blockquote>Excelente empresa e produtos de ótima qualidade.</blockquote>
@@ -1109,7 +1962,10 @@
           <div class="depoimento-card">
             <div class="depoimento-top">
               <div class="depoimento-avatar" aria-hidden="true">O</div>
-              <div><h3>Óticas Vivi</h3><p class="depoimento-meta">Local Guide · 73 avaliações</p></div>
+              <div>
+                <h3>Óticas Vivi</h3>
+                <p class="depoimento-meta">Local Guide · 73 avaliações</p>
+              </div>
             </div>
             <p class="depoimento-stars" aria-label="5 estrelas">★★★★★</p>
             <blockquote>Armações de óculos lindas e modernas.</blockquote>
@@ -1118,16 +1974,23 @@
           <div class="depoimento-card">
             <div class="depoimento-top">
               <div class="depoimento-avatar" aria-hidden="true">M</div>
-              <div><h3>Marcela Costa</h3><p class="depoimento-meta">5 avaliações · há 4 anos</p></div>
+              <div>
+                <h3>Marcela Costa</h3>
+                <p class="depoimento-meta">5 avaliações · há 4 anos</p>
+              </div>
             </div>
             <p class="depoimento-stars" aria-label="5 estrelas">★★★★★</p>
-            <blockquote>Excelentes peças de bom gosto e qualidade. Ótimos profissionais, atenciosos, educados e sempre disponíveis.</blockquote>
+            <blockquote>Excelentes peças de bom gosto e qualidade. Ótimos profissionais, atenciosos, educados e sempre
+              disponíveis.</blockquote>
             <span class="depoimento-tag">Atendimento atencioso</span>
           </div>
           <div class="depoimento-card">
             <div class="depoimento-top">
               <div class="depoimento-avatar" aria-hidden="true">A</div>
-              <div><h3>Anderson Sampaio</h3><p class="depoimento-meta">3 avaliações · há 4 anos</p></div>
+              <div>
+                <h3>Anderson Sampaio</h3>
+                <p class="depoimento-meta">3 avaliações · há 4 anos</p>
+              </div>
             </div>
             <p class="depoimento-stars" aria-label="5 estrelas">★★★★★</p>
             <blockquote>Produtos lindos e de qualidade. E com garantia de 1 ano. Muito bom!</blockquote>
@@ -1136,7 +1999,10 @@
           <div class="depoimento-card">
             <div class="depoimento-top">
               <div class="depoimento-avatar" aria-hidden="true">M</div>
-              <div><h3>Marcelo Rosario</h3><p class="depoimento-meta">Local Guide · 85 avaliações</p></div>
+              <div>
+                <h3>Marcelo Rosario</h3>
+                <p class="depoimento-meta">Local Guide · 85 avaliações</p>
+              </div>
             </div>
             <p class="depoimento-stars" aria-label="5 estrelas">★★★★★</p>
             <blockquote>O melhor atendimento, uma parceria comercial para durar longa data.</blockquote>
@@ -1145,7 +2011,10 @@
           <div class="depoimento-card">
             <div class="depoimento-top">
               <div class="depoimento-avatar" aria-hidden="true">L</div>
-              <div><h3>Leonardo Costa</h3><p class="depoimento-meta">2 avaliações · há 4 anos</p></div>
+              <div>
+                <h3>Leonardo Costa</h3>
+                <p class="depoimento-meta">2 avaliações · há 4 anos</p>
+              </div>
             </div>
             <p class="depoimento-stars" aria-label="5 estrelas">★★★★★</p>
             <blockquote>Atendimento excelente, material de qualidade, excelente pós venda. Super indico!</blockquote>
@@ -1154,7 +2023,10 @@
           <div class="depoimento-card">
             <div class="depoimento-top">
               <div class="depoimento-avatar" aria-hidden="true">B</div>
-              <div><h3>Bene Ribeiro</h3><p class="depoimento-meta">1 avaliação · há 4 anos</p></div>
+              <div>
+                <h3>Bene Ribeiro</h3>
+                <p class="depoimento-meta">1 avaliação · há 4 anos</p>
+              </div>
             </div>
             <p class="depoimento-stars" aria-label="5 estrelas">★★★★★</p>
             <blockquote>Ótimo atendimento, e peças de qualidade. Satisfação total.</blockquote>
@@ -1176,37 +2048,46 @@
         <div class="valor-card reveal">
           <span class="valor-card-num" aria-hidden="true">01</span>
           <div class="valor-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z" />
+              <path d="M2 17l10 5 10-5" />
+              <path d="M2 12l10 5 10-5" />
             </svg>
           </div>
           <h3>Missão</h3>
-          <p>Entregar produtos ópticos com alta qualidade, excelente margem de lucro e reposição ágil, ajudando óticas e revendedores a vender mais todos os dias.</p>
+          <p>Entregar aos nossos clientes produtos ópticos com alta qualidade, excelente margem de lucro e reposição ágil, ajudando óticas e revendedores a vender mais todos os dias.</p>
         </div>
         <div class="valor-card reveal reveal-delay-1">
           <span class="valor-card-num" aria-hidden="true">02</span>
           <div class="valor-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="8" x2="12" y2="12" />
+              <line x1="12" y1="16" x2="12.01" y2="16" />
             </svg>
           </div>
           <h3>Visão</h3>
-          <p>Ser reconhecida como a distribuidora de referência em artigos de ótica, admirada pelo design inovador, qualidade consistente e parceria estratégica com nossos clientes.</p>
+          <p>Ser o principal parceiro de óticas e revendedores no Brasil, reconhecido por oferecer produtos que giram rápido, tendências atualizadas e condições comerciais que impulsionam resultados.</p>
         </div>
         <div class="valor-card reveal reveal-delay-2">
           <span class="valor-card-num" aria-hidden="true">03</span>
           <div class="valor-icon" aria-hidden="true">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
             </svg>
           </div>
           <h3>Valores</h3>
           <ul>
-            <li>Design e tendência</li>
-            <li>Qualidade garantida</li>
-            <li>Parceria real com o cliente</li>
-            <li>Ética e transparência</li>
-            <li>Inovação contínua</li>
+            <li><strong>Foco em resultado:</strong> Nosso sucesso vem do crescimento dos clientes.</li>
+            <li><strong>Qualidade que vende:</strong> Produtos que unem estilo, durabilidade e aceitação.</li>
+            <li><strong>Agilidade:</strong> Estoque pronto e entregas rápidas.</li>
+            <li><strong>Parceria de verdade:</strong> Relacionamento próximo, suporte e confiança.</li>
+            <li><strong>Preço competitivo:</strong> Margens atrativas para o seu negócio lucrar mais.</li>
+            <li><strong>Inovação constante:</strong> Atentos às tendências que impulsionam vendas.</li>
           </ul>
         </div>
       </div>
@@ -1224,17 +2105,17 @@
         <div class="contato-map">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.3!2d-43.1729!3d-22.9068!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997f5e7f8d9b0001%3A0x7b8e9b7f9d9b0001!2sSantorini+Eyewear!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr"
-            title="Localização Santorini Eyewear"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização Santorini Eyewear" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
             aria-label="Mapa de localização da Santorini Eyewear">
           </iframe>
         </div>
         <div class="contato-info">
           <div class="info-item">
             <div class="info-icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
               </svg>
             </div>
             <div>
@@ -1244,8 +2125,10 @@
           </div>
           <div class="info-item">
             <div class="info-icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
             </div>
             <div>
@@ -1255,8 +2138,10 @@
           </div>
           <div class="info-item">
             <div class="info-icon" aria-hidden="true">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
               </svg>
             </div>
             <div>
@@ -1266,7 +2151,8 @@
           </div>
           <a href="https://wa.me/5521967434256" class="btn-whatsapp" aria-label="Falar no WhatsApp">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
             </svg>
             Falar no WhatsApp
           </a>
@@ -1282,13 +2168,13 @@
         <div class="footer-logo">
           <img src="1778084193288_santorini_logo_site.png" alt="Santorini Eyewear" height="38">
         </div>
-        <p>Atacadista de artigos de ótica desde 2012. Design, qualidade e reposição ágil para óticas e revendedores em todo o Brasil.</p>
+        <p>Atacadista de artigos de ótica desde 2012. Design, qualidade e reposição ágil para óticas e revendedores em
+          todo o Brasil.</p>
       </div>
       <div>
         <p class="footer-heading">Navegação</p>
         <ul class="footer-links">
           <li><a href="#sobre">Sobre</a></li>
-          <li><a href="#portfolio">Produtos</a></li>
           <li><a href="#vitrine">Vitrine</a></li>
           <li><a href="#depoimentos">Depoimentos</a></li>
           <li><a href="#contato">Contato</a></li>
@@ -1310,12 +2196,11 @@
   </footer>
 
   <!-- ════════ WHATSAPP FLUTUANTE ════════ -->
-  <a href="https://wa.me/5521967434256"
-     class="whatsapp-float"
-     aria-label="Falar com Santorini pelo WhatsApp"
-     title="WhatsApp">
+  <a href="https://wa.me/5521967434256" class="whatsapp-float" aria-label="Falar com Santorini pelo WhatsApp"
+    title="WhatsApp">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
     </svg>
   </a>
 
@@ -1355,52 +2240,8 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-    // ── PORTFOLIO REVEAL ──
-    const portfolioObserver = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); portfolioObserver.unobserve(e.target); } });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.portfolio-item').forEach(el => portfolioObserver.observe(el));
-
-    // ── LIGHTBOX ──
-    const lightbox   = document.getElementById('lightbox');
-    const lbImg      = document.getElementById('lightbox-img');
-    const lbCaption  = document.getElementById('lightbox-caption');
-    const items      = [...document.querySelectorAll('.portfolio-item')];
-    let currentIdx   = 0;
-
-    const openLightbox = (idx) => {
-      currentIdx = idx;
-      const img = items[idx].querySelector('img');
-      lbImg.src = img.src;
-      lbImg.alt = img.alt;
-      lbCaption.textContent = img.alt;
-      lightbox.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    };
-    const closeLightbox = () => {
-      lightbox.classList.remove('open');
-      document.body.style.overflow = '';
-      lbImg.src = '';
-    };
-    const navigateLightbox = (dir) => {
-      currentIdx = (currentIdx + dir + items.length) % items.length;
-      const img = items[currentIdx].querySelector('img');
-      lbImg.src = img.src;
-      lbImg.alt = img.alt;
-      lbCaption.textContent = img.alt;
-    };
-
-    items.forEach((item, idx) => item.addEventListener('click', () => openLightbox(idx)));
-    document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
-    document.querySelector('.lightbox-prev').addEventListener('click', () => navigateLightbox(-1));
-    document.querySelector('.lightbox-next').addEventListener('click', () => navigateLightbox(1));
-    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
-    document.addEventListener('keydown', (e) => {
-      if (!lightbox.classList.contains('open')) return;
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowLeft') navigateLightbox(-1);
-      if (e.key === 'ArrowRight') navigateLightbox(1);
-    });
+    // ── VITRINE IFRAME RESIZE ──
+    // O redimensionamento do iframe agora é controlado inteiramente por CSS para evitar conflitos cross-origin.
 
     // ── DEPOIMENTOS DRAG ──
     const marquee = document.querySelector('.depoimentos-marquee');
@@ -1411,22 +2252,60 @@
       scrollLeft = marquee.scrollLeft;
     });
     marquee.addEventListener('mouseleave', () => { isDown = false; marquee.classList.remove('dragging'); });
-    marquee.addEventListener('mouseup',    () => { isDown = false; marquee.classList.remove('dragging'); });
+    marquee.addEventListener('mouseup', () => { isDown = false; marquee.classList.remove('dragging'); });
     marquee.addEventListener('mousemove', (e) => {
       if (!isDown) return;
       e.preventDefault();
-      const x  = e.pageX - marquee.offsetLeft;
+      const x = e.pageX - marquee.offsetLeft;
       const walk = (x - startX) * 1.4;
       marquee.scrollLeft = scrollLeft - walk;
     });
 
-    const CARD_W = () => marquee.querySelector('.depoimento-card')?.offsetWidth + 16 || 320;
+    const CARD_W = () => marquee.querySelector('.depoimento-card')?.offsetWidth + 14 || 320;
     document.querySelector('.depoimento-arrow.prev').addEventListener('click', () => {
       marquee.scrollBy({ left: -CARD_W(), behavior: 'smooth' });
     });
     document.querySelector('.depoimento-arrow.next').addEventListener('click', () => {
       marquee.scrollBy({ left: CARD_W(), behavior: 'smooth' });
     });
+
+    // ── DEPOIMENTOS AUTOPLAY ──
+    let autoplayPaused = false;
+    let autoplayTimer;
+
+    function autoplayStep() {
+      if (autoplayPaused) return;
+      const maxScroll = marquee.scrollWidth - marquee.clientWidth;
+      // se chegou ao fim, volta suavemente ao inicio
+      if (marquee.scrollLeft >= maxScroll - 4) {
+        marquee.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        marquee.scrollBy({ left: CARD_W(), behavior: 'smooth' });
+      }
+    }
+
+    autoplayTimer = setInterval(autoplayStep, 3500);
+
+    // pausa ao hover ou ao arrastar
+    marquee.addEventListener('mouseenter', () => { autoplayPaused = true; });
+    marquee.addEventListener('mouseleave', () => { autoplayPaused = false; });
+    marquee.addEventListener('touchstart', () => { autoplayPaused = true; }, { passive: true });
+    marquee.addEventListener('touchend', () => {
+      setTimeout(() => { autoplayPaused = false; }, 2000);
+    });
+    // pausa tambem ao clicar nos botoes de navegacao
+    document.querySelectorAll('.depoimento-arrow').forEach(btn => {
+      btn.addEventListener('click', () => {
+        autoplayPaused = true;
+        clearTimeout(autoplayTimer);
+        setTimeout(() => {
+          autoplayPaused = false;
+          autoplayTimer = setInterval(autoplayStep, 3500);
+        }, 6000);
+      });
+    });
+
   </script>
 </body>
+
 </html>
