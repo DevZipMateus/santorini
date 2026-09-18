@@ -557,10 +557,14 @@
       background: linear-gradient(rgba(255, 255, 255, 0.90), rgba(255, 255, 255, 0.90)), url('Santorini Eyewear_midias/midia_6.jpg') center center / cover no-repeat;
       position: relative;
       display: block;
+      padding: 120px 40px;
     }
 
     .sobre-inner {
-      display: contents;
+      max-width: 1280px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     .sobre-media {
@@ -583,7 +587,7 @@
     }
 
     .sobre-text {
-      padding: 80px 64px;
+      padding: 0;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -646,16 +650,14 @@
     }
 
     @media (max-width: 900px) {
-      #sobre {
-        grid-template-columns: 1fr;
-      }
-
       .sobre-media {
         min-height: 300px;
       }
+    }
 
-      .sobre-text {
-        padding: 52px 32px;
+    @media (max-width: 768px) {
+      #sobre {
+        padding: 72px 24px;
       }
     }
 
@@ -1081,12 +1083,13 @@
       position: relative;
     }
 
-    /* A barra de rolagem foi eliminada pela altura absoluta, então não precisamos mais forçar a largura para fora da tela. */
     #vitrine-iframe {
       width: 100%;
       border: none;
       display: block;
-      height: 1300px;
+      height: 0;
+      min-height: 1000px;
+      transition: height 0.3s ease;
     }
 
     @media (max-width: 768px) {
@@ -1094,10 +1097,6 @@
         flex-direction: column;
         align-items: flex-start;
         padding: 52px 24px 36px;
-      }
-
-      #vitrine-iframe {
-        height: 1100px;
       }
     }
 
@@ -1772,9 +1771,10 @@
       <nav role="navigation" aria-label="Menu principal">
         <ul class="nav-links">
           <li><a href="#hero">Início</a></li>
-          <li><a href="#sobre">Sobre</a></li>
           <li><a href="#vitrine">Vitrine</a></li>
           <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#valores">Valores</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
       </nav>
@@ -1788,9 +1788,10 @@
     <div id="mobile-menu" class="mobile-menu" role="region" aria-label="Menu mobile">
       <ul>
         <li><a href="#hero">Início</a></li>
-        <li><a href="#sobre">Sobre</a></li>
         <li><a href="#vitrine">Vitrine</a></li>
         <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#valores">Valores</a></li>
         <li><a href="#contato">Contato</a></li>
         <li><a href="https://wa.me/5521967434256">Falar no WhatsApp</a></li>
       </ul>
@@ -1867,29 +1868,6 @@
       </div>
     </div>
   </section>
-
-  <!-- ════════ SOBRE ════════ -->
-  <section id="sobre" aria-labelledby="sobre-title">
-    <div class="sobre-inner">
-      <div class="sobre-text">
-        <p class="section-eyebrow reveal">Nossa história</p>
-        <h2 id="sobre-title" class="section-title reveal reveal-delay-1">
-          Moda e <em>ótica</em><br>em uma só visão
-        </h2>
-        <p class="sobre-lead reveal reveal-delay-2">
-          Fundada em 2012, a empresa surgiu a partir da experiência de seu CEO no mercado de moda, trazendo um olhar estratégico para tendências e estilo.
-        </p>
-        <div class="sobre-divider reveal reveal-delay-2"></div>
-        <p class="reveal reveal-delay-3">
-          Com a migração para o setor óptico, incorporamos esse diferencial ao desenvolvimento do nosso portfólio, oferecendo produtos que unem design, versatilidade e alto potencial de venda.
-        </p>
-        <p class="reveal reveal-delay-3">
-          Atuamos no mercado atacadista de artigos de ótica, fornecendo soluções completas para óticas, revendedores e distribuidores em todo o Brasil. Nosso foco está em oferecer produtos com alto potencial de venda, acompanhando as principais tendências do setor e garantindo um mix estratégico para diferentes perfis de público.
-        </p>
-      </div>
-    </div>
-  </section>
-
 
   <!-- ════════ VITRINE ════════ -->
   <section id="vitrine" aria-label="Vitrine virtual Santorini">
@@ -2037,6 +2015,29 @@
     </div>
   </section>
 
+  <!-- ════════ SOBRE ════════ -->
+  <section id="sobre" aria-labelledby="sobre-title">
+    <div class="sobre-inner">
+      <div class="sobre-text">
+        <p class="section-eyebrow reveal">Nossa história</p>
+        <h2 id="sobre-title" class="section-title reveal reveal-delay-1">
+          Moda e <em>ótica</em><br>em uma só visão
+        </h2>
+        <p class="sobre-lead reveal reveal-delay-2">
+          Fundada em 2012, a empresa surgiu a partir da experiência de seu CEO no mercado de moda, trazendo um olhar estratégico para tendências e estilo.
+        </p>
+        <div class="sobre-divider reveal reveal-delay-2"></div>
+        <p class="reveal reveal-delay-3">
+          Com a migração para o setor óptico, incorporamos esse diferencial ao desenvolvimento do nosso portfólio, oferecendo produtos que unem design, versatilidade e alto potencial de venda.
+        </p>
+        <p class="reveal reveal-delay-3">
+          Atuamos no mercado atacadista de artigos de ótica, fornecendo soluções completas para óticas, revendedores e distribuidores em todo o Brasil. Nosso foco está em oferecer produtos com alto potencial de venda, acompanhando as principais tendências do setor e garantindo um mix estratégico para diferentes perfis de público.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
   <!-- ════════ VALORES ════════ -->
   <section id="valores" aria-labelledby="valores-title">
     <div class="valores-inner">
@@ -2174,9 +2175,10 @@
       <div>
         <p class="footer-heading">Navegação</p>
         <ul class="footer-links">
-          <li><a href="#sobre">Sobre</a></li>
           <li><a href="#vitrine">Vitrine</a></li>
           <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#valores">Valores</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
       </div>
@@ -2241,7 +2243,15 @@
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
     // ── VITRINE IFRAME RESIZE ──
-    // O redimensionamento do iframe agora é controlado inteiramente por CSS para evitar conflitos cross-origin.
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.type === 'vitrine-resize') {
+        var iframe = document.getElementById('vitrine-iframe');
+        if (iframe) {
+          var h = Math.max(e.data.height, 1000);
+          iframe.style.height = h + 'px';
+        }
+      }
+    });
 
     // ── DEPOIMENTOS DRAG ──
     const marquee = document.querySelector('.depoimentos-marquee');

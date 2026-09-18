@@ -1,0 +1,449 @@
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="format-detection" content="telephone=no">
+<script type="text/javascript" src="https://santorini.egestor.com.br/_vendor/WP8/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="https://santorini.egestor.com.br/_vendor/flickity/flickity.pkgd.min.js"></script>
+<script type='text/javascript' src='../vitrine/index.class.js?_r=17'></script>
+<script type='text/javascript' src='../vitrine/toaster.class.js?_r=2'></script>
+<script type='text/javascript' src='../vitrine/lupa.class.js?_r=1'></script>
+
+<link rel="shortcut icon" href="https://santorini.egestor.com.br/_styles/eGestor/img/favicon.png">
+<link type="text/css" rel="stylesheet" href="https://santorini.egestor.com.br/_vendor/flickity/flickity.css" media="screen">
+<link type="text/css" rel="stylesheet" href="https://santorini.egestor.com.br/_vendor/WP8/css/font-awesome.min.css">
+<link type='text/css' rel='stylesheet' href='../vitrine/style.css?_r=17'>
+<link type='text/css' rel='stylesheet' href='../vitrine/toaster.style.css?_r=1'>
+<link type='text/css' rel='stylesheet' href='../vitrine/lupa.style.css?_r=1'>
+
+
+    <style role="variaveisPersonalizadas">
+:root {
+    --color-accent: #004a99;
+	--color-border: #e5e5e5;
+	--color-text: #000000;
+	--color-on-accent: #ffffff;
+	--color-on-categoria-active: #ffffff;
+	--bg-carrossel: #f8f4f5;
+	--bg-page: transparent;
+	--bg-base: #ffffff;
+	--bg-input: #ffffff;
+	--bg-categoria-active: #000000;
+	--grid-size-lg: 5;
+	--grid-size-md: 3;
+	--grid-size-sm: 2;
+}
+    </style>
+
+
+
+<title>Vitrine santorini</title>
+
+<script type='text/javascript' defer>
+    function vitrineEnvioAltura() {
+        window.parent.postMessage({ type: 'vitrine-resize', height: document.documentElement.scrollHeight }, '*');
+    }
+    function vitrineObservarAltura() {
+        vitrineEnvioAltura();
+        if (window.MutationObserver) {
+            new MutationObserver(vitrineEnvioAltura).observe(document.body, { childList: true, subtree: true });
+        }
+        window.addEventListener('resize', vitrineEnvioAltura);
+    }
+    $(document).ready(function() {
+        vitrineObservarAltura();
+        Toaster.init();
+        Lupa.init(true);
+
+        Vitrine.init({"whatsapp":"","campos":[],"exibirCategorias":1,"exibirCategoriaProduto":1,"esconderPrecos":0,"ocultarSemEstoque":0,"exibirAnotacoesInternas":0,"habilitarLupa":1,"produtosPorPagina":10,"cssVariables":"--color-accent: #004a99;--color-border: #e5e5e5;--color-text: #000000;--color-on-accent: #ffffff;--color-on-categoria-active: #ffffff;--bg-carrossel: #f8f4f5;--bg-page: transparent;--bg-base: #ffffff;--bg-input: #ffffff;--bg-categoria-active: #000000;--grid-size-lg: 5;--grid-size-md: 3;--grid-size-sm: 2;","cssCustom":"","jsCustom":""});
+    });
+
+</script>
+
+<aside class='carrinho'>
+    <div class="backdrop" onclick="Vitrine.fecharCarrinho(event)"></div>
+    <div class="content">
+        <a class="close" role="button" onclick="Vitrine.fecharCarrinho(event)">&times;</a>
+        <div class="header">
+            <h2>Carrinho (<span class="carrinho-total">0</span>)</h2>
+            <button type="button" class="limpar" onclick="Vitrine.limparCarrinho(event)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trash2 lucide-trash-2 size-4 text-red-500"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path><line x1="10" x2="10" y1="11" y2="17"></line><line x1="14" x2="14" y1="11" y2="17"></line></svg>
+                Limpar carrinho
+            </button>
+        </div>
+        <ul class="itens">
+            <li class="vazio">Carrinho vazio</li>
+        </ul>
+        <footer>
+                        <strong class="info">
+                <span>Total:</span>
+                <span class="valor">R$ 0,00</span>
+            </strong>
+                        <button type="button" class="finalizar primary" onclick="Vitrine.finalizarCompra(event)">
+                                    <i class="fa fa-whatsapp"></i>
+                    Enviar via WhatsApp
+                            </button>
+        </footer>
+    </div>
+</aside>
+
+<dialog id="formulario-compra">
+    <a class="close" role="button" onclick="Vitrine.fecharModal(event)">&times;</a>
+    <h2>Dados adicionais</h2>
+    <span>Para finalizar a compra, precisamos de alguns dados adicionais.</span>
+    <form onsubmit="Vitrine.enviarFormulario(event)">
+        <button type="submit" class="primary">
+            <i class="fa fa-whatsapp"></i>
+            Enviar via WhatsApp
+        </button>
+    </form>
+</dialog>
+
+<main>
+    <nav>
+        <input type="hidden" name="subdominio" id="subdominio" value="santorini">
+        <input type="search" name="busca" id="busca" placeholder="Buscar produtos..." oninput="Vitrine.filtrarProdutos(event)">
+        <button type='button' class='abrir-carrinho' onclick='Vitrine.abrirCarrinho(event)'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg>
+            <span class='carrinho-total'>0</span>
+        </button>
+    </nav>
+    <section class='produtos'>
+                            <div class='categorias'>
+                <button type='button' class='categoria' onclick='Vitrine.filtrarPorCategoria(event)'>
+                    Todos
+                </button>
+                <span class="separator vertical"></span>
+                                    <button type='button' class='categoria' data-categoria='21' onclick='Vitrine.filtrarPorCategoria(event)'>
+                        Atelier                    </button>
+                                    <button type='button' class='categoria' data-categoria='20' onclick='Vitrine.filtrarPorCategoria(event)'>
+                        Clipon feminino                    </button>
+                                    <button type='button' class='categoria' data-categoria='19' onclick='Vitrine.filtrarPorCategoria(event)'>
+                        Clipon Masculino                    </button>
+                                    <button type='button' class='categoria' data-categoria='13' onclick='Vitrine.filtrarPorCategoria(event)'>
+                        Premium                    </button>
+                                    <button type='button' class='categoria' data-categoria='18' onclick='Vitrine.filtrarPorCategoria(event)'>
+                        Premium Infantil                    </button>
+                                    <button type='button' class='categoria' data-categoria='17' onclick='Vitrine.filtrarPorCategoria(event)'>
+                        Premium Masculino                    </button>
+                                    <button type='button' class='categoria' data-categoria='16' onclick='Vitrine.filtrarPorCategoria(event)'>
+                        Premium Unissex                    </button>
+                                    <button type='button' class='categoria' data-categoria='10' onclick='Vitrine.filtrarPorCategoria(event)'>
+                        Santorini 2026                    </button>
+                                    <button type='button' class='categoria' data-categoria='14' onclick='Vitrine.filtrarPorCategoria(event)'>
+                        Solar                    </button>
+                            </div>
+                        <div class='produto' data-id='1912'>
+            <div class='carrossel'>
+                                        <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0731.7e492.8203.b37f.f6c1' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                            <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0731.96d16.ca20.3421.64c7' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                </div>
+            <div class='info'>
+                <div class='nome'>
+                    <span> ARMAÇÃO ATELIER 130212 (C1) </span>
+                                    </div>
+                                    <div class='categorias'>
+                        <button class='categoria' data-categoria="21" onclick='Vitrine.filtrarPorCategoria(event)'>
+                            Atelier                        </button>
+                    </div>
+                                                <div class='preco'>
+                                        R$ 140,00                </div>
+                                <div class='quantidade'>
+                    <button type='button' class='menos' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"></path></svg>
+                    </button>
+                    <input class='valor' type='text' pattern='\d*' inputmode='numeric' value='1' maxlength="4" minlength="1" />
+                    <button type='button' class='mais' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M12 5v14m7-7H5"></path></svg>
+                    </button>
+                </div>
+                <button type='button' class='adicionar primary' onclick='Vitrine.onAdicionarAoCarrinho(event)'>Adicionar ao carrinho</button>
+            </div>
+        </div>
+            <div class='produto' data-id='1911'>
+            <div class='carrossel'>
+                                        <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0731.3d40f.df4c.ae9a.e09b' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                            <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0731.5c710.94b1.4d03.57df' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                </div>
+            <div class='info'>
+                <div class='nome'>
+                    <span> ARMAÇÃO ATELIER 130212 (C2) </span>
+                                    </div>
+                                    <div class='categorias'>
+                        <button class='categoria' data-categoria="21" onclick='Vitrine.filtrarPorCategoria(event)'>
+                            Atelier                        </button>
+                    </div>
+                                                <div class='preco'>
+                                        R$ 140,00                </div>
+                                <div class='quantidade'>
+                    <button type='button' class='menos' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"></path></svg>
+                    </button>
+                    <input class='valor' type='text' pattern='\d*' inputmode='numeric' value='1' maxlength="4" minlength="1" />
+                    <button type='button' class='mais' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M12 5v14m7-7H5"></path></svg>
+                    </button>
+                </div>
+                <button type='button' class='adicionar primary' onclick='Vitrine.onAdicionarAoCarrinho(event)'>Adicionar ao carrinho</button>
+            </div>
+        </div>
+            <div class='produto' data-id='1913'>
+            <div class='carrossel'>
+                                        <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0732.1d92c.a9d7.53c8.650b' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                            <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0732.3a880.ed6a.6514.154a' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                </div>
+            <div class='info'>
+                <div class='nome'>
+                    <span> ARMAÇÃO ATELIER 130212 (C5) </span>
+                                    </div>
+                                    <div class='categorias'>
+                        <button class='categoria' data-categoria="21" onclick='Vitrine.filtrarPorCategoria(event)'>
+                            Atelier                        </button>
+                    </div>
+                                                <div class='preco'>
+                                        R$ 140,00                </div>
+                                <div class='quantidade'>
+                    <button type='button' class='menos' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"></path></svg>
+                    </button>
+                    <input class='valor' type='text' pattern='\d*' inputmode='numeric' value='1' maxlength="4" minlength="1" />
+                    <button type='button' class='mais' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M12 5v14m7-7H5"></path></svg>
+                    </button>
+                </div>
+                <button type='button' class='adicionar primary' onclick='Vitrine.onAdicionarAoCarrinho(event)'>Adicionar ao carrinho</button>
+            </div>
+        </div>
+            <div class='produto' data-id='1961'>
+            <div class='carrossel'>
+                                        <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0750.969c2.10a5.9ad2.3051' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                            <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0751.13263.ffff.60b3.7085' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                </div>
+            <div class='info'>
+                <div class='nome'>
+                    <span> ARMAÇÃO ATELIER 130214 (C1) </span>
+                                    </div>
+                                    <div class='categorias'>
+                        <button class='categoria' data-categoria="21" onclick='Vitrine.filtrarPorCategoria(event)'>
+                            Atelier                        </button>
+                    </div>
+                                                <div class='preco'>
+                                        R$ 140,00                </div>
+                                <div class='quantidade'>
+                    <button type='button' class='menos' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"></path></svg>
+                    </button>
+                    <input class='valor' type='text' pattern='\d*' inputmode='numeric' value='1' maxlength="4" minlength="1" />
+                    <button type='button' class='mais' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M12 5v14m7-7H5"></path></svg>
+                    </button>
+                </div>
+                <button type='button' class='adicionar primary' onclick='Vitrine.onAdicionarAoCarrinho(event)'>Adicionar ao carrinho</button>
+            </div>
+        </div>
+            <div class='produto' data-id='1962'>
+            <div class='carrossel'>
+                                        <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0751.3f242.0ed7.2d82.c2f7' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                            <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0751.5aeaf.2b20.f040.e928' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                </div>
+            <div class='info'>
+                <div class='nome'>
+                    <span> ARMAÇÃO ATELIER 130214 (C3) </span>
+                                    </div>
+                                    <div class='categorias'>
+                        <button class='categoria' data-categoria="21" onclick='Vitrine.filtrarPorCategoria(event)'>
+                            Atelier                        </button>
+                    </div>
+                                                <div class='preco'>
+                                        R$ 140,00                </div>
+                                <div class='quantidade'>
+                    <button type='button' class='menos' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"></path></svg>
+                    </button>
+                    <input class='valor' type='text' pattern='\d*' inputmode='numeric' value='1' maxlength="4" minlength="1" />
+                    <button type='button' class='mais' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M12 5v14m7-7H5"></path></svg>
+                    </button>
+                </div>
+                <button type='button' class='adicionar primary' onclick='Vitrine.onAdicionarAoCarrinho(event)'>Adicionar ao carrinho</button>
+            </div>
+        </div>
+            <div class='produto' data-id='1902'>
+            <div class='carrossel'>
+                                        <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0727.9d793.47bc.06f8.dd55' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                </div>
+            <div class='info'>
+                <div class='nome'>
+                    <span> ARMAÇÃO ATELIER 130234 (C2) </span>
+                                    </div>
+                                    <div class='categorias'>
+                        <button class='categoria' data-categoria="21" onclick='Vitrine.filtrarPorCategoria(event)'>
+                            Atelier                        </button>
+                    </div>
+                                                <div class='preco'>
+                                        R$ 140,00                </div>
+                                <div class='quantidade'>
+                    <button type='button' class='menos' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"></path></svg>
+                    </button>
+                    <input class='valor' type='text' pattern='\d*' inputmode='numeric' value='1' maxlength="4" minlength="1" />
+                    <button type='button' class='mais' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M12 5v14m7-7H5"></path></svg>
+                    </button>
+                </div>
+                <button type='button' class='adicionar primary' onclick='Vitrine.onAdicionarAoCarrinho(event)'>Adicionar ao carrinho</button>
+            </div>
+        </div>
+            <div class='produto' data-id='1901'>
+            <div class='carrossel'>
+                                        <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0727.7b82b.9b6e.ef4f.29d1' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                </div>
+            <div class='info'>
+                <div class='nome'>
+                    <span> ARMAÇÃO ATELIER 130234 (C5) </span>
+                                    </div>
+                                    <div class='categorias'>
+                        <button class='categoria' data-categoria="21" onclick='Vitrine.filtrarPorCategoria(event)'>
+                            Atelier                        </button>
+                    </div>
+                                                <div class='preco'>
+                                        R$ 140,00                </div>
+                                <div class='quantidade'>
+                    <button type='button' class='menos' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"></path></svg>
+                    </button>
+                    <input class='valor' type='text' pattern='\d*' inputmode='numeric' value='1' maxlength="4" minlength="1" />
+                    <button type='button' class='mais' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M12 5v14m7-7H5"></path></svg>
+                    </button>
+                </div>
+                <button type='button' class='adicionar primary' onclick='Vitrine.onAdicionarAoCarrinho(event)'>Adicionar ao carrinho</button>
+            </div>
+        </div>
+            <div class='produto' data-id='1909'>
+            <div class='carrossel'>
+                                        <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0730.5d8ef.e3cf.a52e.8ba6' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                            <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0730.712f2.4937.d45d.88fa' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                </div>
+            <div class='info'>
+                <div class='nome'>
+                    <span> ARMAÇÃO ATELIER 130235 (C2) </span>
+                                    </div>
+                                    <div class='categorias'>
+                        <button class='categoria' data-categoria="21" onclick='Vitrine.filtrarPorCategoria(event)'>
+                            Atelier                        </button>
+                    </div>
+                                                <div class='preco'>
+                                        R$ 140,00                </div>
+                                <div class='quantidade'>
+                    <button type='button' class='menos' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"></path></svg>
+                    </button>
+                    <input class='valor' type='text' pattern='\d*' inputmode='numeric' value='1' maxlength="4" minlength="1" />
+                    <button type='button' class='mais' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M12 5v14m7-7H5"></path></svg>
+                    </button>
+                </div>
+                <button type='button' class='adicionar primary' onclick='Vitrine.onAdicionarAoCarrinho(event)'>Adicionar ao carrinho</button>
+            </div>
+        </div>
+            <div class='produto' data-id='1910'>
+            <div class='carrossel'>
+                                        <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0730.933dd.2fe1.23f4.6f05' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                            <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0731.17e31.ed89.3d14.a1fa' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                </div>
+            <div class='info'>
+                <div class='nome'>
+                    <span> ARMAÇÃO ATELIER 130235 (C4) </span>
+                                    </div>
+                                    <div class='categorias'>
+                        <button class='categoria' data-categoria="21" onclick='Vitrine.filtrarPorCategoria(event)'>
+                            Atelier                        </button>
+                    </div>
+                                                <div class='preco'>
+                                        R$ 140,00                </div>
+                                <div class='quantidade'>
+                    <button type='button' class='menos' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"></path></svg>
+                    </button>
+                    <input class='valor' type='text' pattern='\d*' inputmode='numeric' value='1' maxlength="4" minlength="1" />
+                    <button type='button' class='mais' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M12 5v14m7-7H5"></path></svg>
+                    </button>
+                </div>
+                <button type='button' class='adicionar primary' onclick='Vitrine.onAdicionarAoCarrinho(event)'>Adicionar ao carrinho</button>
+            </div>
+        </div>
+            <div class='produto' data-id='1906'>
+            <div class='carrossel'>
+                                        <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0729.3c4b4.4b1c.171a.97d6' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                            <div class="item">
+                            <img class='imagem' src='https://santorini.egestor.com.br/files/?key=16138.0729.58831.8081.534b.1475' alt='' preload='auto' loading='lazy' />
+                        </div>
+                                </div>
+            <div class='info'>
+                <div class='nome'>
+                    <span> ARMAÇÃO ATELIER 130236 (C1) </span>
+                                    </div>
+                                    <div class='categorias'>
+                        <button class='categoria' data-categoria="21" onclick='Vitrine.filtrarPorCategoria(event)'>
+                            Atelier                        </button>
+                    </div>
+                                                <div class='preco'>
+                                        R$ 140,00                </div>
+                                <div class='quantidade'>
+                    <button type='button' class='menos' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minus"><path d="M5 12h14"></path></svg>
+                    </button>
+                    <input class='valor' type='text' pattern='\d*' inputmode='numeric' value='1' maxlength="4" minlength="1" />
+                    <button type='button' class='mais' onclick='Vitrine.alterarQuantidade(event)'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M12 5v14m7-7H5"></path></svg>
+                    </button>
+                </div>
+                <button type='button' class='adicionar primary' onclick='Vitrine.onAdicionarAoCarrinho(event)'>Adicionar ao carrinho</button>
+            </div>
+        </div>
+                            <div class="pagination">
+                                                <span>Página 1 de 36</span>
+                                    <button type="button" onclick="Vitrine.irParaPagina(1)">
+                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                            </div>
+                <script type='text/javascript'>
+            Vitrine.produtos = [...new Set([...Vitrine.produtos, ...[{"codigo":"1912","IxProd":" ARMAÇÃO ATELIER 130212 (C1) ","precoVenda":"140.0000000000","listaImagens":[{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0731.7e492.8203.b37f.f6c1"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0731.878e9.df16.9ddb.69c8"}},{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0731.96d16.ca20.3421.64c7"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0732.0d7c6.8cac.4a9b.123a"}}]},{"codigo":"1911","IxProd":" ARMAÇÃO ATELIER 130212 (C2) ","precoVenda":"140.0000000000","listaImagens":[{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0731.3d40f.df4c.ae9a.e09b"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0731.4eb00.0c3e.94fb.5e8d"}},{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0731.5c710.94b1.4d03.57df"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0731.63434.bc9a.fb21.cbbe"}}]},{"codigo":"1913","IxProd":" ARMAÇÃO ATELIER 130212 (C5) ","precoVenda":"140.0000000000","listaImagens":[{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0732.1d92c.a9d7.53c8.650b"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0732.2375d.51e1.2994.a019"}},{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0732.3a880.ed6a.6514.154a"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0732.40db5.fc7e.3ae7.e149"}}]},{"codigo":"1961","IxProd":" ARMAÇÃO ATELIER 130214 (C1) ","precoVenda":"140.0000000000","listaImagens":[{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0750.969c2.10a5.9ad2.3051"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0751.05455.82f9.ee1d.ec4d"}},{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0751.13263.ffff.60b3.7085"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0751.27849.1b91.b008.5c44"}}]},{"codigo":"1962","IxProd":" ARMAÇÃO ATELIER 130214 (C3) ","precoVenda":"140.0000000000","listaImagens":[{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0751.3f242.0ed7.2d82.c2f7"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0751.4aaba.b60f.fc0b.6fcf"}},{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0751.5aeaf.2b20.f040.e928"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0751.6b830.945c.1d1a.c1b9"}}]},{"codigo":"1902","IxProd":" ARMAÇÃO ATELIER 130234 (C2) ","precoVenda":"140.0000000000","listaImagens":[{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0727.9d793.47bc.06f8.dd55"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0728.0ccf1.6cba.1a39.8633"}}]},{"codigo":"1901","IxProd":" ARMAÇÃO ATELIER 130234 (C5) ","precoVenda":"140.0000000000","listaImagens":[{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0727.7b82b.9b6e.ef4f.29d1"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0727.80458.c38a.d161.a91d"}}]},{"codigo":"1909","IxProd":" ARMAÇÃO ATELIER 130235 (C2) ","precoVenda":"140.0000000000","listaImagens":[{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0730.5d8ef.e3cf.a52e.8ba6"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0730.6e86e.543e.37f6.03e8"}},{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0730.712f2.4937.d45d.88fa"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0730.8d552.e2c8.de73.b1f6"}}]},{"codigo":"1910","IxProd":" ARMAÇÃO ATELIER 130235 (C4) ","precoVenda":"140.0000000000","listaImagens":[{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0730.933dd.2fe1.23f4.6f05"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0731.0d750.1dcb.60ab.0748"}},{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0731.17e31.ed89.3d14.a1fa"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0731.26833.3974.228d.6248"}}]},{"codigo":"1906","IxProd":" ARMAÇÃO ATELIER 130236 (C1) ","precoVenda":"140.0000000000","listaImagens":[{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0729.3c4b4.4b1c.171a.97d6"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0729.466ca.aa50.2bf1.970c"}},{"foto":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0729.58831.8081.534b.1475"},"thumb":{"link":"https:\/\/santorini.egestor.com.br\/files\/?key=16138.0729.63640.1007.2ac9.96aa"}}]}]])];
+        </script>
+        </section>
+</main>
